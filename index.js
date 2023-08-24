@@ -22,7 +22,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(cors());
 app.use(express.json());
 
-app.use('/home', require('./routes/home'));
+app.use('/', require('./routes/home'));
 
 const http = require('http').Server(app);
 // app.set("io", someSocketFile);
