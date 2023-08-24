@@ -18,11 +18,11 @@ const getSuppliers = async (req, res) => {
 // Define a function to get a specific supplier by ID
 // Activates if address ends with /:id
 const getSupplier = async (req, res) => {
-    const supplier = await supplierService.getSupplierById(req.params.id);
-    if (!supplier) {
+    const article = await supplierService.getSupplierById(req.params.id);
+    if (!article) {
         return res.status(404).json({ errors: ['Supplier not found'] });
     }
-    res.json(supplier);
+    res.json(article);
 };
 
 // Define a function to update a supplier's information

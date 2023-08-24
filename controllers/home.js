@@ -11,9 +11,9 @@ const index = async (req, res) => {
 
     // Render the EJS template for the homepage and pass the fetched branches data
     res.render('../views/HomePage.ejs', { branches });
-};
+}
 
 // Export the defined index function to be used as the route handler
 module.exports = {
     index
-};
+}
