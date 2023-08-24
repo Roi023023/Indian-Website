@@ -1,6 +1,6 @@
 const express = require('express'); //express נרצה לעבוד עם
 var router = express.Router(); // תביא לי ראוטר
-const supplierController = require('../controllers/suppliers'); // controller שיצרנו עבור "ארטיקלס
+const productController = require('../controllers/products'); // controller שיצרנו עבור "ארטיקלס
 
 // post & get ניסיון להסביר 
 // post = בשביל לשנות נתונים או עשיתי משהו חדש
@@ -9,15 +9,15 @@ const supplierController = require('../controllers/suppliers'); // controller ש
 // כל מי שיפנה אליי ל"סלייש", בבקשת "גט" / "פוסט"
 //Router for getting Suppliers and for Creating suppliers
 router.route('/')
-    .get(supplierController.getSupplier) //Get suppliers array
-    .post(supplierController.createSupplier);//Create supplier
+    .get(productController.getProduct) //Get products array
+    .post(productController.createProduct);//Create product
 
     //מוצר ספציפי -  כל מי שיפנה אליי דרך "אידי", בבקשת "גט" / "פוסט
-//Router for getting or updating Supplier details or deleting the supplier 
+//Router for getting or updating Product details or deleting the product 
     router.route('/:id')
-    .get(supplierController.getSupplier) //Get a single supplier's detailes
-    .patch(supplierController.updateSupplier) // patch - אני רוצה לשנות שדות של משהו קיים
-    .delete(supplierController.deleteSupplier); // Delete a single supplier
+    .get(supplierController.getProduct) //Get a single product's detailes
+    .patch(supplierController.updateProduct) // patch - אני רוצה לשנות שדות של משהו קיים
+    .delete(supplierController.deleteProduct); // Delete a single product
 
 
 module.exports = router; // נייחצן אותו החוצה כי "אפפ. ג'י אס" צריך אותו
