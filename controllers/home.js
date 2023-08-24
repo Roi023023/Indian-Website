@@ -1,8 +1,10 @@
-const index = (req,res) => {
-    const product = {
-        title: 'we made it!!'
-    }
-    res.render('../views/HomePage.ejs', {product});
+const branchService = require('../services/branches');
+
+const index =async (req,res) => {
+    
+    const branches = await branchService.getBranches();
+    console.log(branches);
+    res.render('../views/HomePage.ejs', {branches});
 }
 
 module.exports = {

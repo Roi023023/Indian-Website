@@ -6,7 +6,7 @@ const session = require('express-session');
 
 mongoose.set('strictQuery', false);
 
-// mongoose.connect('mongodb://localhost:27017/mean', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://roi023023:roi023023@cluster0.3xjnmpk.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 
 const app = express();
 
