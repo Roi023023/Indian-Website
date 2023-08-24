@@ -1,4 +1,4 @@
-const Supplier = require('../models/suppliers');
+const Supplier = require('../models/supplier');
 
 const createSupplier = async (name, location, phone_number, Collaboration_Date) => {
     const supplier = new Supplier({

@@ -8,7 +8,7 @@ const supplierController = require('../controllers/suppliers'); // controller ש
 
 // כל מי שיפנה אליי ל"סלייש", בבקשת "גט" / "פוסט"
 router.route('/')
-    .get(supplierController.getSupplier)
+    .get(supplierController.getSuppliers)
     .post(supplierController.createSupplier);
 
 //מוצר ספציפי -  כל מי שיפנה אליי דרך "אידי", בבקשת "גט" / "פוסט

@@ -23,6 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/', require('./routes/home'));
+app.use('/sup', require('./routes/supplier'));
 
 const http = require('http').Server(app);
 // app.set("io", someSocketFile);
