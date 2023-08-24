@@ -1,12 +1,50 @@
-<html>
-    <head>
-        <title>Home</title>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <div class="container">
-            <h1><%= branches[0].lat %></h1>
-            <p>Home page content goes here.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet"> <!-- Indian style font -->
+    <title>DIKANA Store</title>
+   
+   <link href="/css/home.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="top-bar">
+        <button>Home</button>
+        <div class="logo">DIKANA</div>
+        <button>Log in</button>
+    </div>
+    
+    <div class="content">
+    <div class="info">
+        <div class="info-title">Welcome to DIKANA Store!</div>
+        <div class="info-content">We offer a wide variety of products sourced from the best artisans across India. Enjoy your shopping experience!</div>
+    </div>
+
+    <div class="center">
+        <a href="shoppingPage.html">
+            <button id="storeBtn">Store</button>
+        </a>
+        <div class="video-container">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/JosWoVYnbKA" frameborder="0" allowfullscreen></iframe>
         </div>
+    </div>
+
+    <div class="real-time-data">
+        <div id="time">Current Time: --:--</div>
+        <div id="temperature">Temperature: -- °C</div>
+    </div>
+</div>
+    
+        <footer>
+            <div style="text-align: center; padding: 20px; background-color: #b71c1c; color: gold; font-family: 'Shrikhand', cursive;">
+                Thank you for visiting DIKANA. Namaste! 🙏
+            </div>
+        </footer>
+    
+        <script src="/js/home.js"></script>
     </body>
-</html>
+    </html>
+    
