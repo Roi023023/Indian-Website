@@ -6,7 +6,6 @@ const createBranch = async (city, country, established) => {
         country : country,
         established : established,
     });
-
     return await branch.save(); 
 };
 

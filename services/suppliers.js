@@ -7,7 +7,6 @@ const createSupplier = async (name, location, phone_number, Collaboration_Date) 
         phone_number : phone_number,
         Collaboration_Date : Collaboration_Date
     });
-
     // if (Collaboration_Date)
         // supplier.Collaboration_Date = Collaboration_Date;
     return await supplier.save(); 
