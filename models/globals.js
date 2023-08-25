@@ -1,26 +1,36 @@
-// globals.js
+// global.js
+const PriceRangeCounts = require('./models/priceRangeCounts');
 
-const numPerPriceRange = [0, 0, 0]; // Initialize with default values
-
-const getNumPerPriceRange = (priceRange) => {
+const getNumPerPriceRange = async (priceRange) => {
     if (priceRange >= 1 && priceRange <= 3) {
-        return numPerPriceRange[priceRange - 1];
+        const priceRangeCounts = await PriceRangeCounts.findOne({ range: priceRange });
+        return priceRangeCounts ? priceRangeCounts.count : 0;
     } else {
         throw new Error('Invalid price range');
     }
 };
 
-const incrementNumPerPriceRange = (priceRange) => {
+const incrementNumPerPriceRange = async (priceRange) => {
     if (priceRange >= 1 && priceRange <= 3) {
-        numPerPriceRange[priceRange - 1]++;
+        let priceRangeCounts = await PriceRangeCounts.findOne({ range: priceRange });
+
+        if (priceRangeCounts) {
+            priceRangeCounts.count++;
+            await priceRangeCounts.save();
+        }
     } else {
         throw new Error('Invalid price range');
     }
 };
 
-const decrementNumPerPriceRange = (priceRange) => {
+const decrementNumPerPriceRange = async (priceRange) => {
     if (priceRange >= 1 && priceRange <= 3) {
-        numPerPriceRange[priceRange - 1]--;
+        let priceRangeCounts = await PriceRangeCounts.findOne({ range: priceRange });
+
+        if (priceRangeCounts && priceRangeCounts.count > 0) {
+            priceRangeCounts.count--;
+            await priceRangeCounts.save();
+        }
     } else {
         throw new Error('Invalid price range');
     }
@@ -31,3 +41,5 @@ module.exports = {
     incrementNumPerPriceRange,
     decrementNumPerPriceRange
 };
+
+
