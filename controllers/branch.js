@@ -19,13 +19,11 @@ const getBranch = async (req, res) => {
 };
 
 const updateBranch = async (req, res) => {
-  
-    const Branch = await BranchSerivce.updateBranch(req.params.id, req.body.name);
-    if (!Branch) {
+    const branch = await BranchSerivce.updateBranch(req.params.id, req.body.name);
+    if (!branch) {
       return res.status(404).json({ errors: ['Branch not found'] });
     }
-  
-    res.json(Branch);
+    res.json(branch);
   };
 
   const deleteBranch = async (req, res) => {

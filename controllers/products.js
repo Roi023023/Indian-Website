@@ -1,15 +1,15 @@
-// Import the module responsible for handling supplier-related data
+// Import the module responsible for handling Product-related data
 const product = require('../models/product');
 const productService = require('../services/products');
 
-// Define a function to create a new supplier
+// Define a function to create a new Product
 // Activates when address ends with / 
 const createProduct = async (req, res) => {
     const newProduct = await productService.createProduct(req.body.name);
     res.json(newProduct);
 };
 
-// Define a function to get all suppliers
+// Define a function to get all Products
 // activates if address ends with / 
 const getProducts = async (req, res) => {
     const products = await productService.getProducts();
@@ -26,20 +26,25 @@ const getProduct = async (req, res) => {
     res.json(product);
 };
 
-// Define a function to update a supplier's information
+
+
+// Define a function to update a product's information
+//(if you want to be able to update product)
 // Activates if adress ends with /:id
-/*const updateSupplier = async (req, res) => {
+/*const updateProduct = async (req, res) => {
     if (!req.body.name) {
         res.status(400).json({ message: "Name is required" });
     }
-    const supplier = await supplierService.updateSupplier(req.params.id, req.body.name);
-    if (!supplier) {
-        return res.status(404).json({ errors: ['Supplier not found'] });
+    const Product = await ProductService.updateProduct(req.params.id, req.body.name);
+    if (!Product) {
+        return res.status(404).json({ errors: ['Product not found'] });
     }
-    res.json(supplier);
+    res.json(Product);
 };*/
 
-// Define a function to delete a supplier
+
+
+// Define a function to delete a Product
 // Activates if adress ends with /:id
 const deleteProduct = async (req, res) => {
     const product = await productService.deleteProduct(req.params.id);
@@ -54,6 +59,6 @@ module.exports = {
     createProduct,
     getProducts,
     getProduct,
-    //updateSupplier,
+    //updateProduct,
     deleteProduct
 };
