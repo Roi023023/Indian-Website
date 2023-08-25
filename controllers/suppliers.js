@@ -23,7 +23,6 @@ const updateSupplier = async (req, res) => {
     if (!supplier) {
       return res.status(404).json({ errors: ['Supplier not found'] });
     }
-  
     res.json(supplier);
   };
 
