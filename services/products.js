@@ -2,10 +2,30 @@ const product = require('../models/product');
 const Product = require('../models/products');
 
 const createProduct = async (name, price, image) => {
-    const supplier = new Supplier({
+    //added start
+    let priceRange;
+
+    if (price > 0 && price < 11) {
+        priceRange = 0;
+    } else if (price >= 11 && price < 21) {
+        priceRange = 1;
+    } else if (price >= 21 && price < 31) {
+        priceRange = 2;
+    } else if (price >= 31 && price < 41) {
+        priceRange = 3;
+    } else {
+        //is not supposed to happen
+    }
+    //added finish
+
+
+    const product = new Product({
         name : name,
         price : price,
-        image : image
+        image : image,
+        //added start
+        priceRange:priceRange
+        //added finish
     });
 
     // if (Collaboration_Date)
