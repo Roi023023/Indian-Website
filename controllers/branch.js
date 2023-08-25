@@ -1,7 +1,7 @@
 const BranchSerivce = require('../services/branches');
 
 const createBranch = async (req, res) => {
-    const newBranch = await BranchSerivce.createBranch(req.body.city);
+    const newBranch = await BranchSerivce.createBranch(req.body.city, req.body.country, req.body.established);
     res.json(newBranch);
 };
 
@@ -19,7 +19,7 @@ const getBranch = async (req, res) => {
 };
 
 const updateBranch = async (req, res) => {
-    const branch = await BranchSerivce.updateBranch(req.params.id, req.body.name);
+    const branch = await BranchSerivce.updateBranch(req.params.id, req.body.city, req.body.country, req.body.established);
     if (!branch) {
       return res.status(404).json({ errors: ['Branch not found'] });
     }
