@@ -11,7 +11,7 @@ const SupplierSchema = new Schema({
         isRequired: true
     },
     phone_number: {
-        type: Number,
+        type: String,
         isRequired: true
     },
     Collaboration_Date: {
