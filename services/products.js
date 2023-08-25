@@ -1,33 +1,15 @@
 const product = require('../models/product');
 const Product = require('../models/products');
-const globals = require('../models/globals'); //added model
 
-const createProduct = async (name, price, image) => {
-    //added start
-    let priceRange;
-
-    if (price > 0 && price < 11) {
-        priceRange = 1;
-        globals.incrementNumPerPriceRange(1);
-    } else if (price >= 11 && price < 21) {
-        priceRange = 2;
-        globals.incrementNumPerPriceRange(2);
-    } else if (price >= 21 && price < 31) {
-        priceRange = 3;
-        globals.incrementNumPerPriceRange(3);
-    }  else {
-        //is not supposed to happen
-    }
-    //added finish
-
+const createProduct = async (name, price, category, color, gender, image) => {
 
     const product = new Product({
         name : name,
         price : price,
+        category:category, 
+        color:color, 
+        gender:gender,
         image : image,
-        //added start
-        priceRange:priceRange
-        //added finish
     });
 
     // if (Collaboration_Date)
@@ -47,13 +29,16 @@ const getProducts = async () => {
 };
 
 
-const updateProduct = async (id, name, price, image) => {
+const updateProduct = async (id, name, price, category, color, gender, image) => {
     const product = await getProductById(id);
     if (!product) 
         return null;
 
     product.name = name; 
     product.price = price;
+    product.category = category;
+    product.color = color;
+    product.gender = gender;
     product.image = image;
     
     
@@ -67,17 +52,15 @@ const deleteProduct = async (id) => {
     if (!product)
         return null;
 
-    globals.decrementNumPerPriceRange(product.priceRange);
-    
     await product.remove();
     return product;
 };
 
 
 module.exports = {
-    createSupplier,
-    getSupplierById,
-    getSuppliers,
-    updateSupplier,
-    deleteSupplier
+    createProduct,
+    getProductById,
+    getProducts,
+    updateProduct,
+    deleteProduct
 }
