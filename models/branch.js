@@ -2,12 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const BranchSchema = new Schema({
-    lat: {
+    city: {
         type: String,
         isRequired: true
     },
-    long: {
+    country: {
         type: String,
+        isRequired: true
+    },
+    established: {
+        type: Date,
         isRequired: true
     }
 });
