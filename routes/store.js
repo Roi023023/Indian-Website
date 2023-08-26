@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const product = require('../models/products'); // Importing the product model
+const Product = require('../models/products'); // Importing the product model
 
-router.get('/', async (req, res) => { // Make sure the route is '/store'
+router.get('/', async (req, res) => {
     try {
-        const products = await product.find();
-        res.render('Store', { product });
+        const products = await Product.find(); // Use the "Product" model to find items
+        res.render('store', { products }); // Render the 'store.ejs' template with fetched products
     } catch (error) {
         console.error('Error fetching products:', error);
         res.status(500).send('Error fetching products');
