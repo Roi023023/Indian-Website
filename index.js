@@ -31,12 +31,13 @@ const adminRoutes = require('./routes/admin'); // Referencing the 'admin.js' rou
 const loginRoutes = require('./routes/logIn'); // Referencing the 'login.js' routes file
 const registreationRoutes = require('./routes/registreation'); // Referencing the 'registreation.js' routes file
 const storeRoutes = require('./routes/store') // Referencing the 'store.js' routes file
+const cartRoutes = require('./routes/cart'); // Referencing the 'cart.js' routes file
 
 app.use('/store', storeRoutes); // Associating the store routes with the '/store' path
 app.use('/admin', adminRoutes); // Associating the admin routes with the '/admin' path
 app.use('/login', loginRoutes); // Associating the login routes with the '/login' path
 app.use('/registreation', registreationRoutes); // Associating the registreation routes with the '/registreation' path
-
+app.use('/cart', cartRoutes); // Associating the store routes with the '/cart' path
 
 app.use((req, res, next) => {
     res.locals.user = req.session.user; // Attach user data to res.locals
