@@ -2,7 +2,7 @@ const product = require('../models/product');
 const Product = require('../models/products');
 const globals = require('../models/globals'); //added model
 
-const createProduct = async (name, price, image) => {
+const createProduct = async (name, price, category, color, gender, image) => {
     //added start
     let priceRange;
 
@@ -24,6 +24,9 @@ const createProduct = async (name, price, image) => {
     const product = new Product({
         name : name,
         price : price,
+        category:category,
+        color:color,
+        gender:gender,
         image : image,
         //added start
         priceRange:priceRange
