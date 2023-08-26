@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="/css/statistics.css" rel="stylesheet" />
+    <title>DIKANA Store</title>
+</head>
+<body>
+    <div class="top-bar">
+        <button>Home</button>
+        <div class="logo">DIKANA</div>
+        <button>Log in</button>
+    </div>
+
+    <div id="chartContainer">
+        <canvas id="barChart"></canvas>
+    </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        let priceRangeCounts = <%- JSON.stringify(priceRangeCounts) %>;
+        let labels = priceRangeCounts.map(range => `${range._id}`);
+        let data = priceRangeCounts.map(range => range.count);
+
+        var ctxB = document.getElementById("barChart").getContext('2d');
+        var myBarChart = new Chart(ctxB, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Product Count',
+                    data: data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+  
+    <footer>
+        <div style="text-align: center; padding: 20px; background-color: #b71c1c; color: gold; font-family: 'Shrikhand', cursive;">
+            Thank you for visiting DIKANA. Namaste! 🙏
+        </div>
+    </footer>
+  
+    <script src="/js/statistics.js"></script>
+</body>
+</html>

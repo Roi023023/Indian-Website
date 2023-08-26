@@ -45,6 +45,8 @@ app.use('/login', loginRoutes); // Associating the login routes with the '/login
 app.use('/registreation', registreationRoutes); // Associating the registreation routes with the '/registreation' path
 app.use('/users', userRoutes); // Use the user routes
 app.use('/cart', cartRoutes); // Associating the store routes with the '/cart' path
+app.use('/checkout', checkoutRoutes); // Associating the store routes with the '/checkout' path
+app.use('/statistics', statisticsRoutes); // Associating the store routes with the '/statistics' path
 
 app.get('/registration', (req, res) => {
     res.render('Registration'); // Render the registration page
