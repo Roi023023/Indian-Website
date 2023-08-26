@@ -1,3 +1,4 @@
+
 const { getYearFromDate } = require("../../models/globals");
 const { getSupplierNameById } = require("../../services/suppliers")
 const globals = require("../../models/globals");
