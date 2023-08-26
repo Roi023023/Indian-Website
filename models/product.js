@@ -10,6 +10,22 @@ const ProductSchema = new Schema({
         type: Number,
         isRequired: true
     },
+    
+    category: {
+        type: String,
+        isRequired: true
+    }, 
+
+    color: {
+        type: String,
+        isRequired: true
+    },
+     
+    gender: {
+        type: String,
+        isRequired: true
+    },
+    
     image: {
         type: String,
         isRequired: true

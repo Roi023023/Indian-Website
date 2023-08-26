@@ -2,7 +2,7 @@ const product = require('../models/product');
 const Product = require('../models/products');
 const globals = require('../models/globals'); //added model
 
-const createProduct = async (name, price, image) => {
+const createProduct = async (name, price, category, color, gender, image) => {
     //added start
     let priceRange;
 
@@ -24,6 +24,9 @@ const createProduct = async (name, price, image) => {
     const product = new Product({
         name : name,
         price : price,
+        category:category,
+        color:color,
+        gender:gender,
         image : image,
         //added start
         priceRange:priceRange
@@ -47,7 +50,7 @@ const getProducts = async () => {
 };
 
 
-const updateProduct = async (id, name, price, image) => {
+/*const updateProduct = async (id, name, price, image) => {
     const product = await getProductById(id);
     if (!product) 
         return null;
@@ -59,7 +62,7 @@ const updateProduct = async (id, name, price, image) => {
     
     await product.save(); 
     return product;
-};
+};*/
 
 
 const deleteProduct = async (id) => {
@@ -75,9 +78,9 @@ const deleteProduct = async (id) => {
 
 
 module.exports = {
-    createSupplier,
-    getSupplierById,
-    getSuppliers,
-    updateSupplier,
-    deleteSupplier
+    createProduct,
+    getProductById,
+    getProducts,
+    //updateProduct,
+    deleteProduct
 }

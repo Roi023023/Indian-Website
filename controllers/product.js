@@ -1,6 +1,6 @@
 // Import the module responsible for handling product-related data
 const product = require('../models/product');
-const productService = require('../services/products');
+const productService = require('../products/products');
 
 // Define a function to create a new product
 // Activates when address ends with / 
@@ -54,6 +54,6 @@ module.exports = {
     createProduct,
     getProducts,
     getProduct,
-    //updateSupplier,
+    //updateProduct,
     deleteProduct
 };
