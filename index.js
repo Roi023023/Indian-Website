@@ -31,6 +31,8 @@ const adminRoutes = require('./routes/admin'); // Referencing the 'admin.js' rou
 const loginRoutes = require('./routes/logIn'); // Referencing the 'login.js' routes file
 const registreationRoutes = require('./routes/registreation'); // Referencing the 'registreation.js' routes file
 const storeRoutes = require('./routes/store') // Referencing the 'store.js' routes file
+const Product = require('./models/products');
+const userRoutes = require('./routes/user');
 const cartRoutes = require('./routes/cart'); // Referencing the 'cart.js' routes file
 
 app.use('/store', storeRoutes); // Associating the store routes with the '/store' path
@@ -38,6 +40,13 @@ app.use('/admin', adminRoutes); // Associating the admin routes with the '/admin
 app.use('/login', loginRoutes); // Associating the login routes with the '/login' path
 app.use('/registreation', registreationRoutes); // Associating the registreation routes with the '/registreation' path
 app.use('/cart', cartRoutes); // Associating the store routes with the '/cart' path
+app.use('/store', storeRoutes);//
+app.use('/admin', adminRoutes);
+app.use('/users', userRoutes); // Use the user routes
+
+app.get('/registration', (req, res) => {
+    res.render('Registration'); // Render the registration page
+});
 
 app.use((req, res, next) => {
     res.locals.user = req.session.user; // Attach user data to res.locals
@@ -51,7 +60,9 @@ app.get('/', (req, res) => {
     res.render('homepage', { user }); // Pass the user object to the template
 });
 
-
+app.get('/registration', (req, res) => {
+    res.render('Registration'); // Render the registration page
+});
 
 app.get('/store', async (req, res) => {
     try {
@@ -61,6 +72,29 @@ app.get('/store', async (req, res) => {
         console.error('Error fetching products:', error);
         res.status(500).send('Error fetching products');
     }
+});
+
+app.post('/registration', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        // Check if the username is already taken
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            return res.status(400).send('Username already taken');
+        }
+
+        // Create a new user
+        const newUser = new User({ username, password });
+        await newUser.save();
+
+        // Redirect to login page or wherever you want
+        res.redirect('/login');
+    }  catch (error) {
+        console.error('Error registering user:', error.message); // Log the specific error message
+        res.status(500).send('Error registering user');
+    }
+    
 });
 
 const http = require('http').Server(app);
