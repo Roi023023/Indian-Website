@@ -1,15 +1,15 @@
-// Import the module responsible for handling supplier-related data
+// Import the module responsible for handling product-related data
 const product = require('../models/product');
 const productService = require('../services/products');
 
-// Define a function to create a new supplier
+// Define a function to create a new product
 // Activates when address ends with / 
 const createProduct = async (req, res) => {
     const newProduct = await productService.createProduct(req.body.name);
     res.json(newProduct);
 };
 
-// Define a function to get all suppliers
+// Define a function to get all products
 // activates if address ends with / 
 const getProducts = async (req, res) => {
     const products = await productService.getProducts();
@@ -39,7 +39,7 @@ const getProduct = async (req, res) => {
     res.json(supplier);
 };*/
 
-// Define a function to delete a supplier
+// Define a function to delete a product
 // Activates if adress ends with /:id
 const deleteProduct = async (req, res) => {
     const product = await productService.deleteProduct(req.params.id);
