@@ -1,150 +1,77 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: url('https://www.transparenttextures.com/patterns/purty-wood.png');
-    color: #333;  
-}
-
-.info-title {
-    font-size: 24px;
-    font-weight: bold;
-    font-family: 'Dancing Script', cursive;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.info-content {
     font-size: 16px;
     line-height: 1.5;
+    background-color: #daeefc !important;
 }
 
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background-color: #b71c1c;
-            border-top: 2px solid gold;
-            border-bottom: 2px solid gold;
-        }
+header {
+    background-color: #161438;
+    color: #fff;
+    padding: 20px;
+}
 
-        .top-bar .logo {
-            font-size: 36px;
-            font-weight: bold;
-            color: gold;
-            font-family: 'Shrikhand', cursive; 
-            flex-grow: 1;
-            text-align: center;
-        }
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 
-        .top-bar button {
-            padding: 8px 15px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #d32f2f;
-            color: white;
-            border: 2px solid gold;
-            border-radius: 5px;
-        }
+li {
+    display: inline;
+}
 
-        .top-bar button:hover {
-            background-color: #c62828;
-        }
-
-        .content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            gap: 20px;
-            min-height: 100vh; /* Ensures the content takes at least full viewport height */
-        }
-
-        .center button {
-    padding: 10px 20px;
-    background-image: linear-gradient(45deg, #b71c1c, #8a0000);
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+.icon-img {
+    width: 242px;
+    height: 62px;
+    position: absolute;
+    left: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-        
-        .center button:hover {
-    background-image: linear-gradient(45deg, #8a0000, #b71c1c);
-    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
-    transform: translateY(-2px);
 }
 
-
-
-        .info {
-    flex: 1;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); 
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+header h1 {
+    text-align: center;
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    gap: 20px;
-    min-height: 100vh; 
+footer {
+    background-color: #161438;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
 }
 
-.suppliers-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-.Products-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+.nav .nav-item {
+    display: inline-block;
+    font-size: large;
+    font-weight: bold;
 }
 
-        .real-time-data {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); 
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+.nav-item a.unselected-nav {
+    background-color: #16143842 !important;
+    cursor: pointer;
+    color: #161438;
 }
 
-.real-time-data div {
-    font-size: 20px;
-    font-family: 'Dancing Script', cursive;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
+.nav-item a.selected-nav {
+    color: white;
+    background-color: #161438 !important;
+    cursor: pointer;
 }
 
-
-.video-container {
-    margin-top: 1px;
-    width: 100%;  
-    height: 0;
-    position: relative;
-    padding-bottom: 100%;  
+.nav-item a:hover {
+    color: white;
+    background-color: #161438 !important;
+    cursor: pointer;
 }
 
-        .video-container iframe, .map-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+#admin-panel {
+    margin-left: 20px;
+}
 
+.form-horizontal .control-label {
+    text-align: left !important;
+}
+
+.edit-textbox {
+    width: 100%;
+}

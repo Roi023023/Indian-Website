@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> DIKANA Store - Admin </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/admin-forms/manage-movies-form.css">
+    <link rel="stylesheet" href="/css/admin-forms/manage-screens-form.css">
+    <link rel="stylesheet" href="/css/admin-forms/manage-halls-form.css">
+    <link rel="stylesheet" href="/css/admin-forms/manage-branches-form.css">
+    <link rel="stylesheet" href="/css/admin-forms/manage-admins-form.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="top-bar">
+        <button>Home</button>
+        <div class="logo">DIKANA</div>
+        <button>Log in</button>
+    </div>
+    <ul id="navbar" class="nav justify-content-center">
+        <li class="nav-item"><a id="createProductFormLink" onclick="loadPanel('admin/createProductForm')">Add New Product</a></li>
+        <li class="nav-item"><a id="manageProductFormLink" onclick="loadPanel('admin/manageProductForm')">Manage Product</a></li>
+        <li class="nav-item"><a id="createBranchFormLink" onclick="loadPanel('admin/createBranchForm')">Add New Brunch</a></li>
+        <li class="nav-item"><a id="managePBranchFormLink" onclick="loadPanel('admin/manageBranchForm')">Manage Brunch</a></li>
+        <li class="nav-item"><a id="createSupplierFormLink" onclick="loadPanel('admin/createSupplierForm')">Add New Supplier</a></li>
+        <li class="nav-item"><a id="manageSupplierFormLink" onclick="loadPanel('admin/manageSupplierForm')">Manage Supplier</a></li>
+        <li class="nav-item"><a id="createUserFormLink" onclick="loadPanel('admin/createUserForm')">Add New User</a></li>
+        <li class="nav-item"><a id="manageUserFormLink" onclick="loadPanel('admin/manageUserForm')">Manage User</a></li>
+        <li class="nav-item"><a id="createAdminFormLink" onclick="loadPanel('admin/createAdminForm')">Add New Admin</a></li>
+        <li class="nav-item"><a id="manageAdminsFormLink" onclick="loadPanel('admin/manageAdminsForm')">Manage Admin</a></li>
+    </ul>
+    <div id="admin-panel"></div>
+    <footer>
+        <script src="/js/admin.js"></script>
+        <div style="text-align: center; padding: 20px; background-color: #b71c1c; color: gold; font-family: 'Shrikhand', cursive;">
+            Thank you for visiting DIKANA. Namaste! 🙏
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

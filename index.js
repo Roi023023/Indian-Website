@@ -29,7 +29,6 @@ const adminRoutes = require('./routes/admin'); // Referencing the 'admin.js' rou
 
 app.use('/admin', adminRoutes); // Associating the admin routes with the '/admin' path
 
-
 const http = require('http').Server(app);
 // app.set("io", someSocketFile);
 http.listen(3000);

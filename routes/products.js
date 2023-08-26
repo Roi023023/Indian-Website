@@ -13,3 +13,18 @@ router.route('/')
     .delete(productController.deleteProduct);
 
 module.exports = router; 
+
+
+
+/************************************************************************* */
+const { createHall, getHalls, deleteHall, editHall } = require('../controllers/hall');
+
+router.route('/')
+    .post(createHall)
+    .get(getHalls)
+
+router.route('/:id')
+    .delete(deleteHall)
+    .put(editHall)
+
+module.exports = router;

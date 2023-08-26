@@ -10,14 +10,15 @@ const createProduct = async (name, price, category, color, gender, image) => {
         image : image,
     });
 
-    // if (Collaboration_Date)
-        // supplier.Collaboration_Date = Collaboration_Date;
     return await product.save(); 
 };
 
-
 const getProductById = async (id) => {
     return await Product.findById(id);
+};
+
+const getProductByName = async (name) => {
+    return await Product.find({ name });
 };
 
 const getProducts = async () => {
@@ -36,10 +37,8 @@ const updateProduct = async (id, name, price, category, color, gender, image) =>
     product.gender = gender;
     product.image = image;
     
-    await product.save(); 
-    return product;
+    return await product.save(); 
 };
-
 
 const deleteProduct = async (id) => {
     const product = await getProductById(id);
@@ -50,10 +49,10 @@ const deleteProduct = async (id) => {
     return product;
 };
 
-
 module.exports = {
     createProduct,
     getProductById,
+    getProductByName,
     getProducts,
     updateProduct,
     deleteProduct
