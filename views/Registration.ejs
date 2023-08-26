@@ -15,17 +15,17 @@
             <button>Home</button>
         </a>
         <div class="logo">DIKANA</div>
-        <a href="Register_Page.ejs">
+        <a href="/registration">
             <button>Register</button>
         </a>
         <a href="Login_Page.ejs">
             <button>Log in</button>
         </a>
     </div>
-    
+
     <div class="content text-center">
         <div class="registration-form">
-            <form id="registrationForm" action="/register" method="POST">
+            <form id="registrationForm" action="/registration" method="POST"> <!-- Update action to /registration -->
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
@@ -49,7 +49,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+         document.addEventListener("DOMContentLoaded", function() {
             const registrationForm = document.getElementById("registrationForm");
 
             registrationForm.addEventListener("submit", async function(event) {
@@ -60,13 +60,15 @@
 
                 // Send registration request to server (you should implement this)
                 try {
-                    const response = await fetch("/register", {
+                    const response = await fetch("/registration", { // Update the route to /registration
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({ username, password })
                     });
+                    console.log('Registration request received:', username, password);
+
 
                     if (response.ok) {
                         // Redirect to the login page after successful registration
@@ -82,3 +84,4 @@
     </script>
 </body>
 </html>
+
