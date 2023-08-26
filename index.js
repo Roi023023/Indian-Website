@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const session = require('express-session');
-
+const router = express.Router();
 // Initialize Express app
 const app = express();
 
