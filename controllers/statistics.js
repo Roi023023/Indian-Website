@@ -1,8 +1,8 @@
-const getStatisticsPage =async (req,res) => {
+const Product = require('../models/products');
 
-    res.render('statistics');
-}
+const getStatisticsPage = async (req, res) => {
+  const priceRangeCounts = await Product.getPriceRangeCounts();
+  res.render('statistics', { priceRangeCounts });
+};
 
-module.exports = {
-    getStatisticsPage
-}
+module.exports = { getStatisticsPage };

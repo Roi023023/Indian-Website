@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
-    name: {
+    Name: {
         type: String,
         isRequired: true
     },
-    price: {
+    Price: {
         type: Number,
         isRequired: true
     },
@@ -27,5 +27,20 @@ const ProductSchema = new Schema({
         isRequired: true
     }
 });
+
+ProductSchema.statics.getPriceRangeCounts = async function() {
+    return this.aggregate([
+      {
+        $bucket: {
+          groupBy: "$price",
+          boundaries: [0, 11, 21, 31],
+          default: "31+",
+          output: {
+            count: { $sum: 1 }
+          }
+        }
+      }
+    ]);
+  };
 
 module.exports = mongoose.model('Product', ProductSchema, "Products");
