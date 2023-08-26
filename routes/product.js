@@ -15,9 +15,9 @@ router.route('/')
     //מוצר ספציפי -  כל מי שיפנה אליי דרך "אידי", בבקשת "גט" / "פוסט
 //Router for getting or updating Product details or deleting the product 
     router.route('/:id')
-    .get(supplierController.getProduct) //Get a single product's detailes
-    .patch(supplierController.updateProduct) // patch - אני רוצה לשנות שדות של משהו קיים
-    .delete(supplierController.deleteProduct); // Delete a single product
+    .get(productController.getProduct) //Get a single product's detailes
+    .patch(productController.updateProduct) // patch - אני רוצה לשנות שדות של משהו קיים
+    .delete(productController.deleteProduct); // Delete a single product
 
 
 module.exports = router; // נייחצן אותו החוצה כי "אפפ. ג'י אס" צריך אותו

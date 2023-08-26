@@ -47,7 +47,7 @@ const getProducts = async () => {
 };
 
 
-const updateProduct = async (id, name, price, image) => {
+/*const updateProduct = async (id, name, price, image) => {
     const product = await getProductById(id);
     if (!product) 
         return null;
@@ -59,7 +59,7 @@ const updateProduct = async (id, name, price, image) => {
     
     await product.save(); 
     return product;
-};
+};*/
 
 
 const deleteProduct = async (id) => {
@@ -75,9 +75,9 @@ const deleteProduct = async (id) => {
 
 
 module.exports = {
-    createSupplier,
-    getSupplierById,
-    getSuppliers,
-    updateSupplier,
-    deleteSupplier
+    createProduct,
+    getProductById,
+    getProducts,
+    //updateProduct,
+    deleteProduct
 }
