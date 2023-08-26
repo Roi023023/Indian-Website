@@ -26,7 +26,7 @@ const xScale = d3.scaleLinear()
     .range([0, 550]);
 
 const yScale = d3.scaleLinear()
-    .domain([0, 10])
+    .domain([10, 0])
     .range([0, 300]);
 
 const customTickValues = ["1 - 10$", "11 - 20$", "21 - 30$"];
