@@ -12,15 +12,26 @@
 </head>
 <body>
     <div class="top-bar">
+        <a href="HomePage.ejs">
         <button>Home</button>
+        </a>
         <div class="logo">DIKANA</div>
         <button>Log in</button>
     </div>
     
-    <div class="content text-center">
-        <button class="btn btn-primary" style="margin: 10px;">Users</button>
+
+    <div class="content text-center"> 
+        <div class="users-row">
+        <p> Users: 
+        <button class="btn btn-info" style="margin: 10px;">All users</button>
+        <a href="/registration">
+            <button class="btn btn-info" style="margin: 10px;">New user</button>
+        </a>
+        <button class="btn btn-info" style="margin: 10px;">Delete user</button>
+        </p>
+    </div>
         <a href="/statistics">
-            <button class="btn btn-success" style="margin: 10px;">Statistics</button>
+        <button class="btn btn-success" style="margin: 10px;">Statistics</button>
         </a>
         <div class="suppliers-row">
             <p> Suppliers: 
@@ -45,7 +56,7 @@
         </div>
     </footer>
     
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/js/admin.js"></script>
