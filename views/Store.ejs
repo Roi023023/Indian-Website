@@ -7,7 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/store.css" rel="stylesheet"> <!-- You can create this CSS file for store-specific styles -->
+    <!-- Add this inside the <head> section -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Add admin.css to combine styles -->
+    <link href="/css/product-table.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
     <title>DIKANA Store</title>
 </head>
@@ -21,33 +25,28 @@
             <button>Log in</button>
         </a>
     </div>
-    
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search products...">
+        <button>Search</button>
+    </div>    
     <div class="content text-center">
-        <div class="store-table">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Image</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Color</th>
-                        <th scope="col">Gender</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% items.forEach(item => { %>
-                        <tr>
-                            <td><img src="<%= item.image %>" alt="<%= item.name %>" class="img-thumbnail"></td>
-                            <td><%= item.name %></td>
-                            <td>$<%= item.price %></td>
-                            <td><%= item.category %></td>
-                            <td><%= item.color %></td>
-                            <td><%= item.gender %></td>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
+        <div class="row store-cards"> <!-- Wrap cards in a row -->
+            <% products.forEach(product => { %>
+                <div class="col-md-4"> <!-- Use col-md-4 to display 3 cards per row on medium-sized screens -->
+                    <div class="card product-card">
+                        <img src="<%= product.image %>" alt="<%= product.name %>" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= product.name %></h5>
+                            <p class="card-text">Price: $<%= product.Price %></p>
+                            <p class="card-text">Category: <%= product.category %></p>
+                            <p class="card-text">Color: <%= product.color %></p>
+                            <p class="card-text">Gender: <%= product.gender %></p>
+                            <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
         </div>
     </div>
 
@@ -63,3 +62,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
+
