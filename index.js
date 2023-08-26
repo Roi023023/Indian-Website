@@ -32,18 +32,18 @@ const adminRoutes = require('./routes/admin'); // Referencing the 'admin.js' rou
 const loginRoutes = require('./routes/logIn'); // Referencing the 'login.js' routes file
 const registreationRoutes = require('./routes/registreation'); // Referencing the 'registreation.js' routes file
 const storeRoutes = require('./routes/store') // Referencing the 'store.js' routes file
-const Product = require('./models/products');
 const userRoutes = require('./routes/user');
 const cartRoutes = require('./routes/cart'); // Referencing the 'cart.js' routes file
+const Product = require('./models/products');
+const User = require('./models/user'); // Assuming you have a User model
+
 
 app.use('/store', storeRoutes); // Associating the store routes with the '/store' path
 app.use('/admin', adminRoutes); // Associating the admin routes with the '/admin' path
 app.use('/login', loginRoutes); // Associating the login routes with the '/login' path
 app.use('/registreation', registreationRoutes); // Associating the registreation routes with the '/registreation' path
-app.use('/cart', cartRoutes); // Associating the store routes with the '/cart' path
-app.use('/store', storeRoutes);//
-app.use('/admin', adminRoutes);
 app.use('/users', userRoutes); // Use the user routes
+app.use('/cart', cartRoutes); // Associating the store routes with the '/cart' path
 
 app.get('/registration', (req, res) => {
     res.render('Registration'); // Render the registration page
@@ -56,18 +56,14 @@ app.use((req, res, next) => {
 // Render the home page with user data (if available)
 app.get('/', (req, res) => {
     // Assuming you have a user object from your authentication logic
-    const user = req.user; // This is just an example, you should have your actual user object
+    const user = req.session.user; // This is just an example, you should have your actual user object
     
     res.render('homepage', { user }); // Pass the user object to the template
 });
 
-app.get('/registration', (req, res) => {
-    res.render('Registration'); // Render the registration page
-});
-
 app.get('/store', async (req, res) => {
     try {
-        const products = await product.find(); // Fetch product from the database
+        const products = await Product.find(); // Fetch product from the database
         res.render('store', { products }); // Render the 'store.ejs' template with fetched products
     } catch (error) {
         console.error('Error fetching products:', error);
