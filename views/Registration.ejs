@@ -15,7 +15,7 @@
             <button>Home</button>
         </a>
         <div class="logo">DIKANA</div>
-        <a href="/registration">
+        <a href="Register_Page.ejs">
             <button>Register</button>
         </a>
         <a href="Login_Page.ejs">
@@ -25,7 +25,7 @@
     
     <div class="content text-center">
         <div class="registration-form">
-            <form id="registrationForm" action="/registration" method="POST"> <!-- Update action to /registration -->
+            <form id="registrationForm" action="/register" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
@@ -60,15 +60,13 @@
 
                 // Send registration request to server (you should implement this)
                 try {
-                    const response = await fetch("/registration", { // Update the route to /registration
+                    const response = await fetch("/register", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({ username, password })
                     });
-                    console.log('Registration request received:', username, password);
-
 
                     if (response.ok) {
                         // Redirect to the login page after successful registration

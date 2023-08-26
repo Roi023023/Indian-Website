@@ -1,8 +1,8 @@
 const express = require('express');
-const adminController = require('../controllers/admin'); // Import the admin controller
+const adminController = require('../controllers/admin'); // Referencing the 'admin.js' controller file
 
 const router = express.Router();
 
-router.get('/', adminController.getAdminPage); // Route to the admin page
+router.route('/').get(adminController.getAdminPage); // Defining the route for the admin page
 
 module.exports = router;
