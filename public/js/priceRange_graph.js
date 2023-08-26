@@ -1,13 +1,21 @@
+const { getNumPerPriceRange } = require("../../models/globals");
+
+async function fetchDataAndRenderGraph() {
+    //data for the graph
+    const priceRange1Count = await getNumPerPriceRange(1);
+    const priceRange2Count = await getNumPerPriceRange(2);
+    const priceRange3Count = await getNumPerPriceRange(3);
+
+    const data = [
+        { x: 0.4, y: priceRange1Count },
+        { x: 1.8, y: priceRange2Count },
+        { x: 3, y: priceRange3Count },
+    ];
 
 
-const data = [
-    //priceRange 1
-    { x: 0.4, y: 2 },
-    //priceRange 2
-    { x: 1.8, y: 4 },
-    //priceRange 3
-    { x: 3, y: 6 },
-];
+
+
+    //graph styling code
 
 // Create an SVG container
 const svg = d3.select("svg").attr("transform", "translate(40, 0)"); // Adjust the x value as needed;
@@ -53,3 +61,5 @@ svg.selectAll(".y-value-text")
 
 svg.append("g")
     .call(d3.axisLeft(yScale));
+}
+fetchDataAndRenderGraph();

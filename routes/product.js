@@ -7,7 +7,7 @@ const productController = require('../controllers/products'); // controller שי
 // get = לקבל בלי לעשות שינויים
 
 // כל מי שיפנה אליי ל"סלייש", בבקשת "גט" / "פוסט"
-//Router for getting Suppliers and for Creating suppliers
+//Router for getting products and for Creating products
 router.route('/')
     .get(productController.getProduct) //Get products array
     .post(productController.createProduct);//Create product
