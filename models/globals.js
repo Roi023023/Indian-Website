@@ -1,5 +1,11 @@
+
+
 // global.js
+
+
+//for priceRange_graph
 const PriceRangeCounts = require('./models/priceRangeCounts');
+const sup = require('./models/supplier');
 
 const getNumPerPriceRange = async (priceRange) => {
     if (priceRange >= 1 && priceRange <= 3) {
@@ -36,10 +42,25 @@ const decrementNumPerPriceRange = async (priceRange) => {
     }
 };
 
+
+//for supTime_graph
+function getYearFromDate(date) {
+    return date.getFullYear();
+}
+
+let supCount = 0;
+
+let numbers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //length 20
+let names = ["sup", "sup", "sup",  "sup", "sup", "sup", "sup", "sup", "sup", "sup", "sup", "sup", "sup", "sup", "sup", "sup", "sup", "sup", "sup", "sup"]; //20
+
 module.exports = {
     getNumPerPriceRange,
     incrementNumPerPriceRange,
-    decrementNumPerPriceRange
+    decrementNumPerPriceRange,
+    getYearFromDate,
+    supCount,
+    numbers,
+    names
 };
 
 

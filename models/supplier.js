@@ -19,6 +19,12 @@ const SupplierSchema = new Schema({
         default: Date.now,
         isRequired: true
     },
+    //added start
+    Collaboration_length: {
+        type: Number,
+        isRequired: true
+    }
+    //added finish
 });
 
 module.exports = mongoose.model('Supplier', SupplierSchema, "Suppliers");

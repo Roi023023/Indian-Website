@@ -1,3 +1,4 @@
+
 const { getNumPerPriceRange } = require("../../models/globals");
 
 async function fetchDataAndRenderGraph() {

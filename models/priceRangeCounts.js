@@ -1,3 +1,4 @@
+
 // models/priceRangeCounts.js
 const mongoose = require('mongoose');
 
