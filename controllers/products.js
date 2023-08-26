@@ -26,7 +26,10 @@ const getProduct = async (req, res) => {
     res.json(product);
 };
 
-// Define a function to update a supplier's information
+
+
+// Define a function to update a product's information
+//(if you want to be able to update product)
 // Activates if adress ends with /:id
 /*const updateSupplier = async (req, res) => {
     if (!req.body.name) {
@@ -38,6 +41,8 @@ const getProduct = async (req, res) => {
     }
     res.json(supplier);
 };*/
+
+
 
 // Define a function to delete a supplier
 // Activates if adress ends with /:id

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const SupplierSchema = new Schema({
+const ProductSchema = new Schema({
     name: {
         type: String,
         isRequired: true
@@ -11,24 +11,21 @@ const SupplierSchema = new Schema({
         isRequired: true
     },
     category: {
-        type: Number,
+        type: String,
         isRequired: true
     },
     color: {
-        type: Date,
-        default: Date.now,
+        type: String,
         isRequired: true
     },
     gender: {
-        type: Date,
-        default: Date.now,
+        type: String,
         isRequired: true
     },
     image: {
-        type: Date,
-        default: Date.now,
+        type: String,
         isRequired: true
-    },
+    }
 });
 
-module.exports = mongoose.model('Supplier', SupplierSchema, "Suppliers");
+module.exports = mongoose.model('Product', ProductSchema, "Products");
