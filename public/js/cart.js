@@ -1,3 +1,5 @@
+//Cart frontend logic (public - cart.js)
+
 document.addEventListener("DOMContentLoaded", function () {
     updateTotalAmount();
   

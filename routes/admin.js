@@ -1,3 +1,5 @@
+//routes - admin.js
+
 const express = require('express');
 const adminController = require('../controllers/admin'); // Import the admin controller
 

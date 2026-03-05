@@ -1,8 +1,15 @@
-const express = require('express');
-const cartController = require('../controllers/cart'); // Referencing the 'cart.js' controller file
+const express = require("express");
+const cartController = require("../controllers/cart");
+const requestAuth = require('../middlewares/requestAuth');
 
 const router = express.Router();
 
-router.route('/').get(cartController.getCartPage); // Defining the route for the cart page
+router.use(requestAuth);
+
+router.get("/", cartController.getCartPage);
+
+router.post("/add/:productId", cartController.addToCart);
+
+router.post("/remove/:productId", cartController.removeFromCart);
 
 module.exports = router;

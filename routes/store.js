@@ -1,6 +1,11 @@
 const express = require('express');
-const router = express.Router();
 const Product = require('../models/products'); // Importing the product model
+const requestAuth = require('../middlewares/requestAuth');
+
+const router = express.Router();
+
+router.use(requestAuth);
+
 
 router.get('/', async (req, res) => {
     try {

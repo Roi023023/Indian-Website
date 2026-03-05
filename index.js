@@ -15,9 +15,15 @@ app.use(session({
     saveUninitialized: true
 }));
 
+////New 'user available to views' 
+//. because both index.js and middlewares are from root directory
+const attachUser = require('./middlewares/authMiddleware');
+app.use(attachUser);
+////
+
 mongoose.set('strictQuery', false);
 
-mongoose.connect('mongodb+srv://roi023023:roi023023@cluster0.3xjnmpk.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+//security risk line removed
 
 app.set("view engine", "ejs");
 app.engine("ejs", require("ejs").__express);
@@ -52,10 +58,15 @@ app.get('/registration', (req, res) => {
     res.render('Registration'); // Render the registration page
 });
 
-app.use((req, res, next) => {
-    res.locals.user = req.session.user; // Attach user data to res.locals
-    next();
-});
+
+//// Primitive 'user available to views'
+//app.use((req, res, next) => {
+    //res.locals.user = req.session.user; // Attach user data to res.locals
+    //next();
+//});
+////
+
+
 // Render the home page with user data (if available)
 app.get('/', (req, res) => {
     // Assuming you have a user object from your authentication logic
