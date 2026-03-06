@@ -1,25 +1,49 @@
 // loginController.js
 const User = require('../models/user');
+const Admin = require('../models/admin');
 
 exports.getLoginPage = (req, res) => {
-    res.render('Login_page'); // Render the login form
+    res.render('Login_page');
 };
 
 exports.loginUser = async (req, res) => {
+
     const { username, password } = req.body;
 
-    // Find the user in the database
-    const user = await User.findOne({ username, password });
+    // Try normal user
+    const user = await User.findOne({ username });
 
-    if (!user) {
-        return res.status(401).render('Login_page', { error: 'Invalid username or password' });
+    if (user) {
+        // Check if password is in DB
+        const valid = await user.comparePassword(password);
+
+        if (!valid) {
+            return res.status(401).render('Login_page', { error: 'Invalid username or password' });
+        }
+
+        req.session.user = user._id;
+
+        const returnTo = req.session.returnTo || '/';
+        delete req.session.returnTo;
+
+        return res.redirect(returnTo);
     }
 
-    // Set session or token to indicate successful login
-    req.session.user = user; // Assuming you're using sessions
-   
-   // Redirect the user back to the previous page or the home page
-   const returnTo = req.session.returnTo || '/';
-   delete req.session.returnTo;
-   res.redirect(returnTo);
+    // Try admin
+    const admin = await Admin.findOne({ username });
+
+    if (admin) {
+        // Check if password is in DB
+        const valid = await admin.comparePassword(password);
+
+        if (!valid) {
+            return res.status(401).render('Login_page', { error: 'Invalid username or password' });
+        }
+
+        req.session.admin = admin._id;
+
+        return res.redirect('/admin');
+    }
+
+    return res.status(401).render('Login_page', { error: 'Invalid username or password' });
 };

@@ -1,7 +1,10 @@
 const express = require('express'); 
-var router = express.Router(); 
 const branchController = require('../controllers/branch'); 
+const requestAuth = require('../middlewares/adminAuth');
 
+const router = express.Router();
+
+router.use(adminAuth);
 
 router.route('/')
     .get(branchController.getBranch)

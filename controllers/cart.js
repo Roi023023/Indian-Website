@@ -1,4 +1,4 @@
-const cartService = require("../services/cart");
+const cartService = require("./services/cart");
 
 const getCartPage = async (req, res) => {
     const cart = await cartService.getCartByUser(req.user._id);
