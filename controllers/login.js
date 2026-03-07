@@ -1,4 +1,4 @@
-// loginController.js
+// loginController - 
 const User = require('../models/user');
 const Admin = require('../models/admin');
 

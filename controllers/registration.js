@@ -1,4 +1,4 @@
-
+//registration controller
 const User = require('../models/user');
 
 exports.getRegistrationPage = (req, res) => {

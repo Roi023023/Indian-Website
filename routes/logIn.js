@@ -1,4 +1,5 @@
-// loginRoutes.js
+// login Routes - handle verifying identity
+
 const express = require('express');
 const loginController = require('../controllers/login');
 
