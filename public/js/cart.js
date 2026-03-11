@@ -1,4 +1,4 @@
-//Cart frontend logic (public - cart.js)
+//cart.js, cart frontend logic (public - cart.js) - already changed to backend, what to write here now?
 
 document.addEventListener("DOMContentLoaded", function () {
     updateTotalAmount();

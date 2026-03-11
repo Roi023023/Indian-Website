@@ -1,3 +1,4 @@
+// store routes
 const express = require('express');
 const Product = require('../models/products'); // Importing the product model
 const requestAuth = require('../middlewares/requestAuth');
@@ -9,7 +10,7 @@ router.use(requestAuth);
 
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find(); // Use the "Product" model to find items
+        const products = await Product.find(); // Use the "Product" model to find items - wrong
         res.render('store', { products }); // Render the 'store.ejs' template with fetched products
     } catch (error) {
         console.error('Error fetching products:', error);

@@ -14,6 +14,6 @@ const BranchSchema = new Schema({
         type: Date,
         isRequired: true
     }
-});
+}, { timestamps: true }); //MongoDB automatically stores: createdAt updatedAt
 
 module.exports = mongoose.model('Branch', BranchSchema, "branches");

@@ -1,3 +1,5 @@
+// Cart services
+
 const Cart = require("../models/cart");
 
 async function getCartByUser(userId) {
@@ -15,7 +17,7 @@ async function addToCart(userId, product) {
     }
 
     const existingItem = cart.items.find(
-        item => item.productId.toString() === product.productId.toString() //
+        item => item.productId.toString() === product.productId.toString() 
     );
 
     if (existingItem) {
@@ -23,8 +25,7 @@ async function addToCart(userId, product) {
     } else {
         cart.items.push(product);
     }
-
-    cart.updatedAt = Date.now();
+    
     await cart.save();
 
     return cart;
@@ -36,7 +37,7 @@ async function removeFromCart(userId, productId) {
     if (!cart) return null;
 
     cart.items = cart.items.filter(
-        item => item.productId.toString() !== productId
+        item => item.productId.toString() !== productId.toString()
     );
 
     await cart.save();

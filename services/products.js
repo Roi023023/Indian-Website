@@ -1,17 +1,16 @@
+//Products services
 const Product = require('../models/products');
 
 const createProduct = async (name, price, category, color, gender, image) => {
     const product = new Product({
-        name : name,
-        price : price,
-        category : category, 
-        color : color, 
-        gender : gender,
-        image : image,
+        name,
+        price,
+        category, 
+        color, 
+        gender,
+        image,
     });
 
-    // if (Collaboration_Date)
-        // supplier.Collaboration_Date = Collaboration_Date;
     return await product.save(); 
 };
 
@@ -46,7 +45,7 @@ const deleteProduct = async (id) => {
     if (!product)
         return null;
 
-    await product.remove();
+    await product.deleteOne();
     return product;
 };
 

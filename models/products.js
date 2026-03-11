@@ -26,7 +26,7 @@ const ProductSchema = new Schema({
         type: String,
         isRequired: true
     }
-});
+}, { timestamps: true }); //MongoDB automatically stores: createdAt updatedAt
 
 ProductSchema.statics.getPriceRangeCounts = async function() {
     return this.aggregate([

@@ -1,15 +1,15 @@
+// product routes 
 const express = require('express');
-var router = express.Router(); 
-const productController = require('../controllers/products'); 
-
+const router = express.Router();
+const productController = require('../controllers/products');
 
 router.route('/')
-    .get(productController.getProduct) 
+    .get(productController.getProducts)
     .post(productController.createProduct);
 
-     router.route('/:id')
-    .get(productController.getProduct)
+router.route('/:id')
+    .get(productController.getProductById)
     .patch(productController.updateProduct)
     .delete(productController.deleteProduct);
 
-module.exports = router; 
+module.exports = router;

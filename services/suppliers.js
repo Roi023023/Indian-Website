@@ -1,11 +1,12 @@
+// Suppliers services 
 const Supplier = require('../models/suppliers');
 
 const createSupplier = async (name, location, phone_number, Collaboration_Date) => {
     const supplier = new Supplier({
-        name : name,
-        location : location,
-        phone_number : phone_number,
-        Collaboration_Date : Collaboration_Date
+        name,
+        location,
+        phone_number,
+        Collaboration_Date
     });
     // if (Collaboration_Date)
         // supplier.Collaboration_Date = Collaboration_Date;
@@ -42,7 +43,7 @@ const deleteSupplier = async (id) => {
     if (!supplier)
         return null;
 
-    await supplier.remove();
+    await supplier.deleteOne();
     return supplier;
 };
 

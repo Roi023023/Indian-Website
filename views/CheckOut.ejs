@@ -1,3 +1,4 @@
+<!-- views/CheckOut.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +14,13 @@
 
 <body>
     <div class="top-bar">
-        <a href="HomePage.ejs">
+        <a href="/"> <!-- could be /homepage instead of / -->
         <button>Home</button>
     </a>
         <div class="logo">DIKANA</div>
-        <button>Log in</button>
+        <a href="/login">
+            <button>Log in</button>
+        </a>
     </div>
 
     <div class="content">
@@ -36,8 +39,6 @@
                     Thank you for visiting DIKANA. Namaste! 🙏
                 </div>
             </footer>
-        
-            <script src="/js/home.js"></script>
         </body>
         </html>
     

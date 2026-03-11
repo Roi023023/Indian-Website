@@ -1,3 +1,5 @@
+// Cart controller
+
 const cartService = require("./services/cart");
 
 const getCartPage = async (req, res) => {

@@ -1,10 +1,11 @@
+// branches services 
 const Branch = require('../models/branch');
 
 const createBranch = async (city, country, established) => {
     const branch = new Branch({
-        city : city,
-        country : country,
-        established : established,
+        city,
+        country,
+        established,
     });
     return await branch.save(); 
 };
@@ -20,14 +21,15 @@ const getBranches = async () => {
 };
 
 
-const updateBranch = async (city, country, established) => {
+const updateBranch = async (id, city, country, established) => {
     const branch = await getBranchById(id);
     if (!branch) 
         return null;
     
-    branch.city = city;
-    branch.country = country;
-    branch.established = established;
+    //prevents possible data overwrite 
+    if (city !== undefined) branch.city = city;
+    if (country !== undefined) branch.country = country;
+    if (established !== undefined) branch.established = established;
     
     await branch.save(); 
     return branch;
@@ -39,7 +41,7 @@ const deleteBranch = async (id) => {
     if (!branch)
         return null;
 
-    await branch.remove();
+    await branch.deleteOne();
     return branch;
 };
 

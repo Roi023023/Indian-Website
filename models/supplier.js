@@ -19,6 +19,6 @@ const SupplierSchema = new Schema({
         default: Date.now,
         isRequired: true
     },
-});
+}, { timestamps: true }); //MongoDB automatically stores: createdAt updatedAt
 
 module.exports = mongoose.model('Supplier', SupplierSchema, "Suppliers");

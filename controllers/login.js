@@ -7,43 +7,46 @@ exports.getLoginPage = (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
+    // In case mongoDB fails
+    try {
 
-    const { username, password } = req.body;
+        const { username, password } = req.body;
 
-    // Try normal user
-    const user = await User.findOne({ username });
+        const user = await User.findOne({ username });
 
-    if (user) {
-        // Check if password is in DB
-        const valid = await user.comparePassword(password);
+        if (user) {
+            const valid = await user.comparePassword(password);
 
-        if (!valid) {
-            return res.status(401).render('Login_page', { error: 'Invalid username or password' });
+            if (!valid) {
+                return res.status(401).render('Login_page', { error: 'Invalid username or password' });
+            }
+
+            req.session.user = user._id;
+
+            const returnTo = req.session.returnTo || '/';
+            delete req.session.returnTo;
+
+            return res.redirect(returnTo);
         }
 
-        req.session.user = user._id;
+        const admin = await Admin.findOne({ username });
 
-        const returnTo = req.session.returnTo || '/';
-        delete req.session.returnTo;
+        if (admin) {
+            const valid = await admin.comparePassword(password);
 
-        return res.redirect(returnTo);
-    }
+            if (!valid) {
+                return res.status(401).render('Login_page', { error: 'Invalid username or password' });
+            }
 
-    // Try admin
-    const admin = await Admin.findOne({ username });
+            req.session.admin = admin._id;
 
-    if (admin) {
-        // Check if password is in DB
-        const valid = await admin.comparePassword(password);
-
-        if (!valid) {
-            return res.status(401).render('Login_page', { error: 'Invalid username or password' });
+            return res.redirect('/admin');
         }
 
-        req.session.admin = admin._id;
+        return res.status(401).render('Login_page', { error: 'Invalid username or password' });
 
-        return res.redirect('/admin');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Login error");
     }
-
-    return res.status(401).render('Login_page', { error: 'Invalid username or password' });
 };

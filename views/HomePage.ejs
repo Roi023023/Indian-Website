@@ -1,3 +1,4 @@
+<!-- views/HomePage.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,19 +18,19 @@
 
 <body>
     <div class="top-bar">
-        <a href="/HomePage.ejs">
+        <a href="/">    <!-- could be /homepage instead of / -->
         <button>Home</button>
     </a>
     <div class="logo">DIKANA</div>
     <a href="/login"><button>Log in</button></a>
-    <a href="cart">
+    
+    <a href="/cart">
         <button type="button" class="btn btn-primary">
             <i class="bi bi-cart"></i> 
           </button>
         </a>
 </div>
         
-    </div>
     <div class="content">
         <div class="info">
             <div class="info-title">Welcome to DIKANA Store!</div>
@@ -50,8 +51,7 @@
             <div id="temperature">Temperature: -- °C</div>
    
         <div class="store-title">Our Stores:</div>
-        <div class="map-container"></div>
-        <div id="map"></div>
+        <div id="map" class="map-container"></div>
     </div>
 </div>
 

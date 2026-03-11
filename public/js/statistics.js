@@ -1,5 +1,6 @@
-// Retrieve the data object passed from the server
-let priceRangeCounts = JSON.parse(document.getElementById("priceData").textContent);
+// Retrieve the data object passed from the server (and read from views)
+const container = document.getElementById("chartContainer");
+let priceRangeCounts = JSON.parse(container.dataset.ranges);
 
 // Prepare labels and data
 let labels = Object.keys(priceRangeCounts);

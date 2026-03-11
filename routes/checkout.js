@@ -1,3 +1,4 @@
+//checkout routes
 const express = require('express');
 const checkoutController = require('../controllers/checkout'); // Referencing the 'checkout.js' controller file
 const requestAuth = require('../middlewares/requestAuth');

@@ -1,5 +1,15 @@
 const userService = require('../services/users'); // Import the user service
 
+exports.getUserPage = (req, res) => {
+    const userId = req.session.user;
+
+    if (!userId) {
+        return res.redirect('/login');
+    }
+
+    res.render('userPage', { userId });
+};
+
 const getAllUsers = async (req, res) => {
     try {
         const users = await userService.getAllUsers();
@@ -22,6 +32,7 @@ const deleteUser = async (req, res) => {
 };
 
 module.exports = {
+    getUserPage,
     getAllUsers,
     deleteUser
 };
