@@ -16,7 +16,9 @@ const getCartPage = async (req, res) => {
 
     res.render("cart", {
         cart,
-        total
+        total,
+        // dont show register button
+        showRegister: false 
     });
 
 };

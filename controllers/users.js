@@ -7,7 +7,10 @@ exports.getUserPage = (req, res) => {
         return res.redirect('/login');
     }
 
-    res.render('userPage', { userId });
+    res.render('userPage', { userId }, {
+        // dont show register button
+        showRegister: false 
+    })
 };
 
 const getAllUsers = async (req, res) => {

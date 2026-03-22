@@ -2,7 +2,10 @@
 const User = require('../models/user');
 
 exports.getRegistrationPage = (req, res) => {
-    res.render('Registration'); // Render the registration form
+    res.render('Registration', {
+        // show register button
+        showRegister: true 
+    })
 };
 
 exports.registerUser = async (req, res) => {

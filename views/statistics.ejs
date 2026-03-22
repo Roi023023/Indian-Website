@@ -1,26 +1,5 @@
 <!-- views/statistics.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="/css/statistics.css" rel="stylesheet" />
-    <title>DIKANA Store</title>
-</head>
 <body>
-    <div class="top-bar">
-        <a href="/"> <!-- could be /homePage instead of / -->
-        <button>Home</button>
-    </a>
-        <div class="logo">DIKANA</div>
-        <a href="/login">
-        <button>Log in</button>
-    </a>
-    </div>
-
     <!-- Read in js -->
     <div id="chartContainer" data-ranges='<%- JSON.stringify(priceRangeCounts || []) %>'>
         <canvas id="barChart"></canvas>
@@ -63,12 +42,5 @@
         });
     </script>
   
-    <footer>
-        <div style="text-align: center; padding: 20px; background-color: #b71c1c; color: gold; font-family: 'Shrikhand', cursive;">
-            Thank you for visiting DIKANA. Namaste! 🙏
-        </div>
-    </footer>
-  
     <script src="/js/statistics.js"></script>
 </body>
-</html>

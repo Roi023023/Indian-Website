@@ -4,7 +4,10 @@
 const Admin = require('../models/admin');
 
 const getLoginPage = (req, res) => {
-    res.render('Admin_Login');
+    res.render('Admin_Login', {
+        // dont show register button
+        showRegister: false 
+    })
 };
 
 const login = async (req, res) => {

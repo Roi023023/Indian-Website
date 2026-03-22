@@ -4,41 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet"> <!-- Indian style font -->
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- cart.ejs might need bootstrap 5, so change cart to bootstrap 4.3.1 if needed -->
+
+
+    <link href="/css/admin.css" rel="stylesheet" />
+    <link href="/css/layout.css" rel="stylesheet" />
+    <link href="/css/store.css" rel="stylesheet">
+    <link href="/css/product-table.css" rel="stylesheet">
+
     <title>DIKANA Store</title>
-   
-   <link href="/css/layout.css" rel="stylesheet" />
 </head>
 
 <body>
+
     <div class="top-bar">
-        <a href="/">
-            <button>Home</button>
-        </a>
+        <a href="/"><button>Home</button></a>
 
         <div class="logo">DIKANA</div>
-        <a href="/login">
-        <button>Log in</button>
+
+        <% if (user) { %>
+            <span>Welcome <%= user.username %></span>
+
+            <form action="/logout" method="POST" style="display:inline;">
+                <button>Logout</button>
+            </form>
+        <% } else { %>
+            <a href="/login">
+                <button>Log in</button>
+            </a>
+        <% } %>
+
+        <a href="/cart">
+            <button type="button" class="btn btn-primary">
+                <i class="bi bi-cart"></i> 
+            </button>
+        </a>
     </div>
-    <a href="/cart"></a>
-        <button type="button" class="btn btn-primary">
-            <i class="bi bi-cart"></i> 
-        </button>
-    </a>
 
-    
+    <%- body %>
 
-
-    
-<footer>
+    <footer>
         <div style="text-align: center; padding: 20px; background-color: #b71c1c; color: gold; font-family: 'Shrikhand', cursive;">
             Thank you for visiting DIKANA. Namaste! 🙏
         </div>
-</footer>
-    
-        <script src="/js/home.js"></script>
-    </body>
-    </html>
-    
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

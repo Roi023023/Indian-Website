@@ -46,6 +46,10 @@ const Product = require('./models/products');
 const User = require('./models/user'); // Assuming you have a User model
 const checkoutRoutes = require('./routes/checkout'); // Referencing the 'checkout.js' routes file
 const statisticsRoutes = require('./routes/statistics'); // Referencing the 'statistics.js' routes file
+const expressLayouts = require('express-ejs-layouts');
+
+app.use(expressLayouts);
+app.set('layout', 'layout'); // views/layout.ejs
 
 app.use('/store', storeRoutes); // Associating the store routes with the '/store' path
 app.use('/admin', adminRoutes); // Associating the admin routes with the '/admin' path
@@ -59,6 +63,12 @@ app.use('/logout', logoutRoutes);
 
 app.get('/registration', (req, res) => {
     res.render('Registration'); // Render the registration page
+});
+
+// layout middlewares
+app.use((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
 });
 
 

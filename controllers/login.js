@@ -3,7 +3,10 @@ const User = require('../models/user');
 const Admin = require('../models/admin');
 
 exports.getLoginPage = (req, res) => {
-    res.render('Login_page');
+    res.render('Login_page', {
+        // show register button
+        showRegister: true 
+    })
 };
 
 exports.loginUser = async (req, res) => {
