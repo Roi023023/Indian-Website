@@ -42,7 +42,9 @@
                       <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
                           <p class="mb-1">Shopping cart</p>
-                          <p class="mb-0">You have 4 items in your cart</p>  <!-- dynamitize -->
+                          <p class="mb-0">
+                            You have <%= cart.items.length %> items in your cart
+                          </p>
                         </div>
                         <div>
                           <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
@@ -50,113 +52,48 @@
                         </div>
                       </div>
       
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row align-items-center">
-                              <div>
-                                <img
-                                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                  class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                              </div>
-                              <div class="ms-3"> <!-- dynamitize -->
-                                <h5>Iphone 11 pro</h5>
-                                <p class="small mb-0">256GB, Navy Blue</p>
-                              </div>
+                    <% cart.items.forEach(item => { %>
+
+                    <div class="card mb-3 cart-item">
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between">
+
+                          <div class="d-flex flex-row align-items-center">
+
+                            <div>
+                                <img src="<%= item.image %>" class="img-fluid rounded-3" style="width:65px;">
                             </div>
-                            <div class="d-flex flex-row align-items-center">
-                              <div style="width: 50px;">
-                                <h5 class="fw-normal mb-0">2</h5>
-                              </div>
-                              <div style="width: 80px;">
-                                <h5 class="mb-0">$900</h5>
-                              </div>
-                              <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                            </div>
-                          </div>
+
+                        <div class="ms-3">
+                          <h5><%= item.name %></h5>
+                              <p class="small mb-0"><%= item.description %></p>
                         </div>
+
+                    </div>
+
+                      <div class="d-flex flex-row align-items-center">
+
+                        <div style="width:50px;">
+                          <h5 class="fw-normal mb-0"><%= item.quantity %></h5>
                       </div>
-      
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row align-items-center">
-                              <div>
-                                <img
-                                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img2.webp"
-                                  class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                              </div>
-                              <div class="ms-3">
-                                <h5>Samsung galaxy Note 10 </h5>
-                                <p class="small mb-0">256GB, Navy Blue</p>
-                              </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center">
-                              <div style="width: 50px;">
-                                <h5 class="fw-normal mb-0">2</h5>
-                              </div>
-                              <div style="width: 80px;">
-                                <h5 class="mb-0">$900</h5>
-                              </div>
-                              <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                            </div>
-                          </div>
-                        </div>
+
+                      <div style="width:80px;">
+                        <h5 class="mb-0 item-price">$<%= (item.price * item.quantity).toFixed(2) %></h5>
                       </div>
-      
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row align-items-center">
-                              <div>
-                                <img
-                                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img3.webp"
-                                  class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                              </div>
-                              <div class="ms-3">
-                                <h5>Canon EOS M50</h5>
-                                <p class="small mb-0">Onyx Black</p>
-                              </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center">
-                              <div style="width: 50px;">
-                                <h5 class="fw-normal mb-0">1</h5>
-                              </div>
-                              <div style="width: 80px;">
-                                <h5 class="mb-0">$1199</h5>
-                              </div>
-                              <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-      
-                      <div class="card mb-3 mb-lg-0">
-                        <div class="card-body">
-                          <div class="d-flex justify-content-between">
-                            <div class="d-flex flex-row align-items-center">
-                              <div>
-                                <img
-                                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp"
-                                  class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                              </div>
-                              <div class="ms-3">
-                                <h5>MacBook Pro</h5>
-                                <p class="small mb-0">1TB, Graphite</p>
-                              </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center">
-                              <div style="width: 50px;">
-                                <h5 class="fw-normal mb-0">1</h5>
-                              </div>
-                              <div style="width: 80px;">
-                                <h5 class="mb-0">$1799</h5>
-                              </div>
-                              <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+
+                      <form action="/cart/remove/<%= item.productId %>" method="POST">
+                        <button class="btn btn-link">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </form>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            <% }) %>
       
                     </div>
                     <div class="col-lg-5">
@@ -194,8 +131,8 @@
                             <div class="row mb-4">
                               <div class="col-md-6">
                                 <div class="form-outline form-white">
-                                  <input type="text" id="typeExp" class="form-control form-control-lg"
-                                    placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
+                                  <input type="text" id="exp" class="form-control form-control-lg"
+                                    placeholder="MM/YYYY" size="7" minlength="7" maxlength="7" />
                                   <label class="form-label" for="typeExp">Expiration</label>
                                 </div>
                               </div>
@@ -210,30 +147,28 @@
       
                           </form>
       
-                          <hr class="my-4"> <!-- dynamitize -->
+                          <hr class="my-4"> 
       
                           <div class="d-flex justify-content-between">
                             <p class="mb-2">Subtotal</p>
-                            <p class="mb-2">$4798.00</p>
+                            $<%= total.toFixed(2) %>
                           </div>
       
                           <div class="d-flex justify-content-between">
                             <p class="mb-2">Shipping</p>
-                            <p class="mb-2">$20.00</p>
+                            <p class="mb-2">$20.00</p> <!-- shipping always 20 dollars -->
                           </div>
       
                           <div class="d-flex justify-content-between mb-4">
                             <p class="mb-2">Total(Incl. taxes)</p>
-                            <p class="mb-2">$4818.00</p>
+                            $<%= (total + 20).toFixed(2) %>
                           </div>
-                        <a href="/checkout">
-                          <button type="button" class="btn btn-info btn-block btn-lg">
+                          <a href="/checkout" class="btn btn-info btn-block btn-lg">
                             <div class="d-flex justify-content-between">
-                              <span>$4818.00</span>
+                              <span>$<%= (total + 20).toFixed(2) %></span>
                               <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                             </div>
-                          </button>
-                        </a>
+                          </a>
                         </div>
                       </div>
       
@@ -259,7 +194,7 @@
         </div>
 </footer>
     
-        <script src="/js/cart.js"></script>
+        <!-- views/cart.ejs <script src="/js/cart.js"></script> (delete is handled by controller) --> 
     </body>
     </html>
     

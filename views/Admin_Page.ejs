@@ -1,3 +1,4 @@
+<!-- views/Admin_Page.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,22 +13,36 @@
 </head>
 <body>
     <div class="top-bar">
-        <a href="HomePage.ejs">
+        <a href="/">
         <button>Home</button>
         </a>
-        <div class="logo">DIKANA</div>
-        <button>Log in</button>
+        <div class="logo">DIKANA Admin</div>
+        <a href="/login">
+            <button>Log in</button>
+        </a>
+
+        <form action="/logout" method="POST" style="display:inline;">
+            <button type="submit">Logout</button>
+        </form>
     </div>
     
 
     <div class="content text-center"> 
-        <div class="users-row">
-        <p> Users: 
-        <button class="btn btn-info" style="margin: 10px;">All users</button>
-        <a href="/registration">
-            <button class="btn btn-info" style="margin: 10px;">New user</button>
+        <div class="products-row">
+        <p> Products: 
+
+        <a href="/admin/products">
+            <button class="btn btn-info">All Products</button>
         </a>
-        <button class="btn btn-info" style="margin: 10px;">Delete user</button>
+
+
+        <a href="/admin/products/new">
+            <button class="btn btn-info">New Product</button>
+        </a>
+
+        <a href="/admin/products/:id/delete">
+            <button class="btn btn-info">Delete Product</button>
+        </a>
         </p>
     </div>
         <a href="/statistics">
@@ -35,16 +50,32 @@
         </a>
         <div class="suppliers-row">
             <p> Suppliers: 
-            <button class="btn btn-info" style="margin: 10px;">All Suppliers</button>
-            <button class="btn btn-info" style="margin: 10px;">New Suppliers</button>
-            <button class="btn btn-info" style="margin: 10px;">Delete Suppliers</button>
+                <a href="/admin/suppliers">
+                    <button class="btn btn-info">All suppliers</button>
+                </a>
+
+                <a href="/admin/suppliers/new">
+                    <button class="btn btn-info" style="margin: 10px;">New supplier</button>
+                </a>
+    
+                <a href="/admin/suppliers/:id/delete">
+                    <button class="btn btn-info">Delete supplier</button>
+                </a>
             </p>
         </div>
-        <div class="Product-row">
-            <p> Product: 
-                <button class="btn btn-info" style="margin: 10px;">All Product</button>
-                <button class="btn btn-info" style="margin: 10px;">New Product</button>
-                <button class="btn btn-info" style="margin: 10px;">Delete Product</button>
+        <div class="users-row">
+            <p> Users: 
+                <a href="/admin/all">
+                    <button class="btn btn-info">All users</button>
+                </a>
+
+                <a href="/registration">
+                    <button class="btn btn-info" style="margin: 10px;">New user</button>
+                </a>
+    
+                <a href="/admin/:id/delete">
+                    <button class="btn btn-info">Delete user</button>
+                </a>
             </p>
         </div>
         <button class="btn btn-primary" id="post-to-fb"    style="margin: 10px;">New post</button>
@@ -56,7 +87,6 @@
         </div>
     </footer>
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/js/admin.js"></script>

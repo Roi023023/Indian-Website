@@ -1,24 +1,25 @@
-//cart.js, cart frontend logic (public - cart.js) - already changed to backend, what to write here now?
+document.addEventListener("DOMContentLoaded", () => {
 
-document.addEventListener("DOMContentLoaded", function () {
-    updateTotalAmount();
-  
-    const deleteButtons = document.querySelectorAll(".delete-item");
-    deleteButtons.forEach(function (button) {
-      button.addEventListener("click", function (e) {
-        const cartItem = e.target.closest(".cart-item");
-        cartItem.remove();
-        updateTotalAmount();
+  const deleteButtons = document.querySelectorAll(".delete-item");
+
+  deleteButtons.forEach(button => {
+
+    button.addEventListener("click", async function () {
+
+      const productId = this.dataset.id;
+
+      const response = await fetch("/cart/remove", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId })
       });
+
+      if (response.ok) {
+        location.reload();
+      }
+
     });
+
   });
-  
-  function updateTotalAmount() {
-    let total = 0;
-    const prices = document.querySelectorAll(".item-price");
-    prices.forEach(function (price) {
-      total += parseFloat(price.textContent.replace("$", ""));
-    });
-    document.querySelector(".total-amount").textContent = "$" + total.toFixed(2);
-  }
-  
+
+});
