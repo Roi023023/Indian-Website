@@ -1,41 +1,52 @@
-// Retrieve the data object passed from the server (and read from views)
-const container = document.getElementById("chartContainer");
-let priceRangeCounts = JSON.parse(container.dataset.ranges);
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("chartContainer");
+  const canvas = document.getElementById("barChart");
 
-// Prepare labels and data
-let labels = Object.keys(priceRangeCounts);
-let data = Object.values(priceRangeCounts);
+  if (!container || !canvas) {
+    console.warn("Chart elements missing");
+    return;
+  }
 
-// Create the bar chart
-var ctxB = document.getElementById("barChart").getContext('2d');
-var myBarChart = new Chart(ctxB, {
-  type: 'bar',
-  data: {
-    labels: labels,  // ["0-10", "11-20", "21-30"]
-    datasets: [{
-      label: 'Number of Products',
-      data: data,  // Replace with the data array
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)'
-      ],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
+  let priceRangeCounts;
+
+  try {
+    priceRangeCounts = JSON.parse(container.dataset.ranges);
+  } catch (err) {
+    console.error("Invalid JSON data", err);
+    return;
+  }
+
+  if (typeof priceRangeCounts !== "object") {
+    console.error("Invalid chart data format");
+    return;
+  }
+
+  const labels = Object.keys(priceRangeCounts);
+  const data = Object.values(priceRangeCounts);
+
+  const backgroundColors = labels.map(() =>
+    `rgba(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, 0.2)`
+  );
+
+  const ctx = canvas.getContext("2d");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [{
+        label: "Number of Products",
+        data,
+        backgroundColor: backgroundColors,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
           beginAtZero: true
         }
-      }]
+      }
     }
-  }
+  });
 });
-
