@@ -1,8 +1,12 @@
 //index.js
+
+//connection to mongoose
+require('dotenv').config(); // loads .env variables
+const mongoose = require('mongoose');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 
@@ -25,9 +29,19 @@ app.use(attachUser);
 mongoose.set('strictQuery', false);
 
 //security risk line removed - will add .env file instead of mongoose.conect
-mongoose.connect(process.env.MONGO_URI)
+/*mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB connected"))
-.catch(err => console.error(err));
+.catch(err => console.error(err));*/
+
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected!'))
+.catch(err => {
+    console.error('MongoDB connection error:', err.message);
+    process.exit(1); // exit if DB fails
+});
 
 app.set("view engine", "ejs");
 app.engine("ejs", require("ejs").__express);
