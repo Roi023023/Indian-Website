@@ -2,6 +2,7 @@
 
 //connection to mongoose
 require('dotenv').config(); // loads .env variables
+console.log('MONGO_URI:', process.env.MONGO_URI);
 const mongoose = require('mongoose');
 
 const express = require('express');
@@ -61,6 +62,7 @@ const User = require('./models/user'); // Assuming you have a User model
 const checkoutRoutes = require('./routes/checkout'); // Referencing the 'checkout.js' routes file
 const statisticsRoutes = require('./routes/statistics'); // Referencing the 'statistics.js' routes file
 const expressLayouts = require('express-ejs-layouts');
+const logoutRoutes = require('./routes/logout');
 
 app.use(expressLayouts);
 app.set('layout', 'layout'); // views/layout.ejs
@@ -68,7 +70,7 @@ app.set('layout', 'layout'); // views/layout.ejs
 app.use('/store', storeRoutes); // Associating the store routes with the '/store' path
 app.use('/admin', adminRoutes); // Associating the admin routes with the '/admin' path
 app.use('/login', loginRoutes); // Associating the login routes with the '/login' path
-//app.use('/registration', registrationRoutes); // Associating the registreation routes with the '/registreation' path
+//app.use('/registreation', registreationRoutes); // Associating the registreation routes with the '/registreation' path
 app.use('/users', userRoutes); // Use the user routes
 app.use('/cart', cartRoutes); // Associating the store routes with the '/cart' path
 app.use('/checkout', checkoutRoutes); // Associating the store routes with the '/checkout' path

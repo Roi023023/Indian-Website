@@ -1,6 +1,7 @@
+//controllers/users.js
 const userService = require('../services/users'); // Import the user service
 
-exports.getUserPage = (req, res) => {
+const getUserPage = (req, res) => {
     const userId = req.session.user;
 
     if (!userId) {
