@@ -1,9 +1,14 @@
 //cart controller
 const cartService = require("../services/cart");
+const Product = require('../models/products');
 
 const getCartPage = async (req, res) => {
 
-    const cart = await cartService.getCartByUser(req.user._id) || { items: [] };
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+    
+    const cart = await cartService.getCartByUser(req.session.user._id) || { items: [] };
 
     const total = cart.items.reduce((sum, item) => {
 
@@ -25,16 +30,28 @@ const getCartPage = async (req, res) => {
 
 const addToCart = async (req, res) => {
 
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+
+    //const userId = req.session.user._id;
+
     try {
 
-        const userId = req.user._id;
+        const dbProduct = await Product.findById(req.params.productId);
+
+        if (!dbProduct) {
+            return res.status(404).send("Product not found");
+        }
 
         const product = {
             productId: req.params.productId,
+            name: dbProduct.name,
+            price: dbProduct.Price,
             quantity: Number(req.body.quantity || 1)
         };
-
-        await cartService.addToCart(userId, product);
+        
+        await cartService.addToCart(req.session.user._id, product);
 
         res.redirect("/cart");
 
@@ -52,7 +69,7 @@ const removeFromCart = async (req, res) => {
     try {
 
         await cartService.removeFromCart(
-            req.user._id,
+            req.session.user._id,
             req.params.productId
         );
 

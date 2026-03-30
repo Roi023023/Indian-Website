@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const BranchSchema = new Schema({
     city: {
         type: String,
-        isRequired: true
+        required: true
     },
     country: {
         type: String,
-        isRequired: true
+        required: true
     },
     established: {
         type: Date,
-        isRequired: true
+        required: true
     }
 }, { timestamps: true }); //MongoDB automatically stores: createdAt updatedAt
 

@@ -24,7 +24,7 @@ exports.loginUser = async (req, res) => {
                 return res.status(401).render('Login_page', { error: 'Invalid username or password' });
             }
 
-            req.session.user = user._id;
+            req.session.user = user;
 
             const returnTo = req.session.returnTo || '/';
             delete req.session.returnTo;

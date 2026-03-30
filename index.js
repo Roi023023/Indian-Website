@@ -10,9 +10,16 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
+const expressLayouts = require('express-ejs-layouts');
 
 // Initialize Express app
 const app = express();
+
+app.engine("ejs", require("ejs").__express); //like this
+
+app.set('view engine', 'ejs'); //AND this?
+app.use(expressLayouts);
+app.set('layout', 'layout'); // views/layout.ejs
 
 // Initialize the session middleware
 app.use(session({
@@ -20,6 +27,12 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+
+// layout middlewares
+app.use((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+});
 
 ////New 'user available to views' 
 //. because both index.js and middlewares are from root directory
@@ -44,16 +57,22 @@ mongoose.connect(process.env.MONGO_URI, {
     process.exit(1); // exit if DB fails
 });
 
-app.set("view engine", "ejs");
-app.engine("ejs", require("ejs").__express);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    // You can get the logged-in user from session
+    const user = req.session.user || null;
+
+    // Render homepage.ejs (make sure file exists in /views)
+    res.render('homepage', { user });
+});
+
 const adminRoutes = require('./routes/admin'); // Referencing the 'admin.js' routes file
 const loginRoutes = require('./routes/logIn'); // Referencing the 'login.js' routes file
-const registreationRoutes = require('./routes/registration'); // Referencing the 'registreation.js' routes file
+const registrationRoutes = require('./routes/registration'); // Referencing the 'registreation.js' routes file
 const storeRoutes = require('./routes/store') // Referencing the 'store.js' routes file
 const userRoutes = require('./routes/user');
 const cartRoutes = require('./routes/cart'); // Referencing the 'cart.js' routes file
@@ -61,16 +80,12 @@ const Product = require('./models/products');
 const User = require('./models/user'); // Assuming you have a User model
 const checkoutRoutes = require('./routes/checkout'); // Referencing the 'checkout.js' routes file
 const statisticsRoutes = require('./routes/statistics'); // Referencing the 'statistics.js' routes file
-const expressLayouts = require('express-ejs-layouts');
 const logoutRoutes = require('./routes/logout');
-
-app.use(expressLayouts);
-app.set('layout', 'layout'); // views/layout.ejs
 
 app.use('/store', storeRoutes); // Associating the store routes with the '/store' path
 app.use('/admin', adminRoutes); // Associating the admin routes with the '/admin' path
 app.use('/login', loginRoutes); // Associating the login routes with the '/login' path
-//app.use('/registreation', registreationRoutes); // Associating the registreation routes with the '/registreation' path
+app.use('/registration', registrationRoutes); // Associating the registreation routes with the '/registreation' path
 app.use('/users', userRoutes); // Use the user routes
 app.use('/cart', cartRoutes); // Associating the store routes with the '/cart' path
 app.use('/checkout', checkoutRoutes); // Associating the store routes with the '/checkout' path
@@ -79,12 +94,6 @@ app.use('/logout', logoutRoutes);
 
 app.get('/registration', (req, res) => {
     res.render('Registration'); // Render the registration page
-});
-
-// layout middlewares
-app.use((req, res, next) => {
-    res.locals.user = req.user || null;
-    next();
 });
 
 

@@ -4,20 +4,20 @@ const Schema = mongoose.Schema;
 const SupplierSchema = new Schema({
     name: {
         type: String,
-        isRequired: true
+        required: true
     },
     location: {
         type: String,
-        isRequired: true
+        required: true
     },
     phone_number: {
         type: String,
-        isRequired: true
+        required: true
     },
     Collaboration_Date: {
         type: Date,
         default: Date.now,
-        isRequired: true
+        required: true
     },
 }, { timestamps: true }); //MongoDB automatically stores: createdAt updatedAt
 

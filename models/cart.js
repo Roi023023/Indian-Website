@@ -24,10 +24,6 @@ const cartSchema = new mongoose.Schema({
         unique: true
     },
     items: [cartItemSchema],
-    updatedAt: {
-        type: Date,
-        default: Date.now
-    }
 }, { timestamps: true }); //MongoDB automatically stores: createdAt updatedAt
 
-module.exports = mongoose.model("Cart", cartSchema);
+module.exports = mongoose.model("Cart", cartSchema, "Carts");

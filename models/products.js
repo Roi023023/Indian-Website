@@ -4,27 +4,27 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
     Name: {
         type: String,
-        isRequired: true
+        required: true
     },
     Price: {
         type: Number,
-        isRequired: true
+        required: true
     },
     category: {
         type: String,
-        isRequired: true
+        required: true
     },
     color: {
         type: String,
-        isRequired: true
+        required: true
     },
     gender: {
         type: String,
-        isRequired: true
+        required: true
     },
     image: {
         type: String,
-        isRequired: true
+        required: true
     }
 }, { timestamps: true }); //MongoDB automatically stores: createdAt updatedAt
 
