@@ -1,16 +1,21 @@
 <div class="container mt-5">
     <h1 class="mb-4">All Suppliers</h1>
 
+    <!-- Search Bar -->
+    <div class="mb-3">
+        <input type="text" id="supplier-search" class="form-control" placeholder="Search suppliers by name...">
+    </div>
+
     <% if (suppliers.length === 0) { %>
         <p>No suppliers found.</p>
     <% } else { %>
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" id="suppliers-table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Location</th>
-                    <th>Phone Number</th>
+                    <th>name</th>
+                    <th>location</th>
+                    <th>phone number</th>
                     <th>Collaboration Date</th>
                     <th>Actions</th>
                 </tr>
@@ -20,8 +25,8 @@
                 <% suppliers.forEach(supplier => { %>
 
                     <!-- MAIN ROW -->
-                    <tr>
-                        <td><%= supplier.name %></td>
+                    <tr class="supplier-row">
+                        <td class="supplier-name"><%= supplier.name %></td>
                         <td><%= supplier.location %></td>
                         <td><%= supplier.phone_number %></td>
                         <td><%= supplier.Collaboration_Date.toISOString().split('T')[0] %></td>
@@ -47,7 +52,6 @@
                     <tr id="edit-row-<%= supplier._id %>" style="display:none;">
                         <td colspan="5">
                             <form action="/admin/suppliers/<%= supplier._id %>/update" method="POST">
-
                                 <input type="text" name="name" value="<%= supplier.name %>" required>
                                 <input type="text" name="location" value="<%= supplier.location %>" required>
                                 <input type="text" name="phone_number" value="<%= supplier.phone_number %>" required>
@@ -66,6 +70,9 @@
             </tbody>
         </table>
 
+        <!-- No suppliers found message -->
+        <p id="no-suppliers-msg" style="font-weight:bold; display:none;">No suppliers found.</p>
+
     <% } %>
 </div>
 
@@ -74,4 +81,28 @@ function toggleEdit(id) {
     const row = document.getElementById(`edit-row-${id}`);
     row.style.display = row.style.display === "none" ? "table-row" : "none";
 }
+
+// Search functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('supplier-search');
+    const supplierRows = document.querySelectorAll('.supplier-row');
+    const noSuppliersMsg = document.getElementById('no-suppliers-msg');
+
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        let anyVisible = false;
+
+        supplierRows.forEach(row => {
+            const name = row.querySelector('.supplier-name').textContent.toLowerCase();
+            if (name.includes(query)) {
+                row.style.display = '';
+                anyVisible = true;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        noSuppliersMsg.style.display = anyVisible ? 'none' : 'block';
+    });
+});
 </script>

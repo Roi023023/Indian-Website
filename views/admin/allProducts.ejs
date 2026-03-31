@@ -1,11 +1,16 @@
 <div class="container mt-5">
     <h1 class="mb-4">All Products</h1>
 
+    <!-- Search Bar -->
+    <div class="mb-3">
+        <input type="text" id="product-search" class="form-control" placeholder="Search products by name...">
+    </div>
+
     <% if (products.length === 0) { %>
         <p>No products found.</p>
     <% } else { %>
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" id="products-table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -20,13 +25,12 @@
 
             <tbody>
                 <% products.forEach(product => { %>
-                    <tr>
-                        <td><%= product.Name %></td>
+                    <tr class="product-row">
+                        <td class="product-name"><%= product.Name %></td>
                         <td>$<%= product.Price %></td>
                         <td><%= product.category %></td>
                         <td><%= product.color %></td>
                         <td><%= product.gender %></td>
-
                         <td>
                             <% if (product.image) { %>
                                 <img src="<%= product.image %>" width="60">
@@ -34,7 +38,6 @@
                                 No Image
                             <% } %>
                         </td>
-
                         <td>
                             <!-- DELETE -->
                             <form action="/admin/products/<%= product._id %>/delete" method="POST" style="display:inline;">
@@ -56,7 +59,6 @@
                     <tr id="edit-row-<%= product._id %>" style="display:none;">
                         <td colspan="7">
                             <form action="/admin/products/<%= product._id %>/update" method="POST">
-
                                 <input type="text" name="name" value="<%= product.name %>" required>
                                 <input type="number" name="price" value="<%= product.price %>" required>
                                 <input type="text" name="category" value="<%= product.category %>">
@@ -77,16 +79,39 @@
             </tbody>
         </table>
 
+        <!-- No products found message -->
+        <p id="no-products-msg" style="font-weight:bold; display:none;">No products found.</p>
+
     <% } %>
 </div>
 
 <script>
 function toggleEdit(id) {
     const row = document.getElementById(`edit-row-${id}`);
-    if (row.style.display === "none") {
-        row.style.display = "table-row";
-    } else {
-        row.style.display = "none";
-    }
+    row.style.display = (row.style.display === "none") ? "table-row" : "none";
 }
+
+// Search functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('product-search');
+    const productRows = document.querySelectorAll('.product-row');
+    const noProductsMsg = document.getElementById('no-products-msg');
+
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        let anyVisible = false;
+
+        productRows.forEach(row => {
+            const name = row.querySelector('.product-name').textContent.toLowerCase();
+            if (name.includes(query)) {
+                row.style.display = '';
+                anyVisible = true;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        noProductsMsg.style.display = anyVisible ? 'none' : 'block';
+    });
+});
 </script>

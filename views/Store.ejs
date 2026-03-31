@@ -1,6 +1,5 @@
 <div class="search-bar">
     <input type="text" placeholder="Search products...">
-    <button>Search</button>
 </div>    
 
 <div class="content text-center">
@@ -13,7 +12,7 @@
                     <div class="card product-card">
                         <img src="<%= product.image %>" alt="<%= product.name %>" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title"><%= product.name %></h5>
+                            <h5 class="card-title"><%= product.Name %></h5>
                             <p class="card-text">Price: $<%= product.Price %></p>
                             <p class="card-text">Category: <%= product.category %></p>
                             <p class="card-text">Color: <%= product.color %></p>
@@ -34,3 +33,40 @@
 
     </div>
 </div>
+
+<script>
+    // Run this after all HTML is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.querySelector('.search-bar input');
+        const productCards = document.querySelectorAll('.store-cards .col-md-4');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+
+            let anyVisible = false;
+
+            productCards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+
+                if (title.includes(query)) {
+                    card.style.display = '';
+                    anyVisible = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show "no products found" dynamically
+            let noProductsMsg = document.querySelector('#no-products-msg');
+            if (!noProductsMsg) {
+                noProductsMsg = document.createElement('p');
+                noProductsMsg.id = 'no-products-msg';
+                noProductsMsg.textContent = 'No products found.';
+                noProductsMsg.style.fontWeight = 'bold';
+                noProductsMsg.style.marginTop = '20px';
+                document.querySelector('.store-cards').parentNode.appendChild(noProductsMsg);
+            }
+            noProductsMsg.style.display = anyVisible ? 'none' : 'block';
+        });
+    });
+</script>
