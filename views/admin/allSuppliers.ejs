@@ -1,0 +1,77 @@
+<div class="container mt-5">
+    <h1 class="mb-4">All Suppliers</h1>
+
+    <% if (suppliers.length === 0) { %>
+        <p>No suppliers found.</p>
+    <% } else { %>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Phone Number</th>
+                    <th>Collaboration Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% suppliers.forEach(supplier => { %>
+
+                    <!-- MAIN ROW -->
+                    <tr>
+                        <td><%= supplier.name %></td>
+                        <td><%= supplier.location %></td>
+                        <td><%= supplier.phone_number %></td>
+                        <td><%= supplier.Collaboration_Date.toISOString().split('T')[0] %></td>
+
+                        <td>
+                            <!-- DELETE -->
+                            <form action="/admin/suppliers/<%= supplier._id %>/delete" method="POST" style="display:inline;">
+                                <button class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure?')">
+                                    Delete
+                                </button>
+                            </form>
+
+                            <!-- EDIT -->
+                            <button class="btn btn-sm btn-warning"
+                                onclick="toggleEdit('<%= supplier._id %>')">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- EDIT ROW -->
+                    <tr id="edit-row-<%= supplier._id %>" style="display:none;">
+                        <td colspan="5">
+                            <form action="/admin/suppliers/<%= supplier._id %>/update" method="POST">
+
+                                <input type="text" name="name" value="<%= supplier.name %>" required>
+                                <input type="text" name="location" value="<%= supplier.location %>" required>
+                                <input type="text" name="phone_number" value="<%= supplier.phone_number %>" required>
+                                <input type="date" name="Collaboration_Date" value="<%= supplier.Collaboration_Date.toISOString().split('T')[0] %>" required>
+
+                                <button class="btn btn-success btn-sm">Save</button>
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                    onclick="toggleEdit('<%= supplier._id %>')">
+                                    Cancel
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                <% }) %>
+            </tbody>
+        </table>
+
+    <% } %>
+</div>
+
+<script>
+function toggleEdit(id) {
+    const row = document.getElementById(`edit-row-${id}`);
+    row.style.display = row.style.display === "none" ? "table-row" : "none";
+}
+</script>

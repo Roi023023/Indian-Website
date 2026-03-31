@@ -1,10 +1,14 @@
 //Products services
 const Product = require('../models/products');
 
-const createProduct = async (name, price, category, color, gender, image) => {
+const getPriceRangeCounts = async () => {
+    return await Product.getPriceRangeCounts();
+};
+
+const createProduct = async (Name, Price, category, color, gender, image) => {
     const product = new Product({
-        name,
-        price,
+        Name,
+        Price,
         category, 
         color, 
         gender,
@@ -23,13 +27,13 @@ const getProducts = async () => {
     return await Product.find({}); 
 };
 
-const updateProduct = async (id, name, price, category, color, gender, image) => {
+const updateProduct = async (id, Name, Price, category, color, gender, image) => {
     const product = await getProductById(id);
     if (!product) 
         return null;
 
-    product.name = name; 
-    product.price = price;
+    product.Name = Name; 
+    product.Price = Price;
     product.category = category;
     product.color = color;
     product.gender = gender;
@@ -51,6 +55,7 @@ const deleteProduct = async (id) => {
 
 
 module.exports = {
+    getPriceRangeCounts,
     createProduct,
     getProductById,
     getProducts,

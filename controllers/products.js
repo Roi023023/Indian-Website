@@ -2,17 +2,21 @@
 const productService = require('../services/products');
 
 // Define a function to create a new Product
-// Activates when address ends with / 
 const createProduct = async (req, res) => {
-    const newProduct = await productService.createProduct(req.body.name, req.body.price, req.body.category, req.body.color, req.body.gender, req.body.image);
-    res.json(newProduct);
+    const price = Number(req.body.price);
+    const newProduct = await productService.createProduct(req.body.name, price, req.body.category, req.body.color, req.body.gender, req.body.image);
+    res.redirect('/admin/');
 };
 
 // Define a function to get all Products
-// activates if address ends with / 
 const getProducts = async (req, res) => {
-    const products = await productService.getProducts();
-    res.json(products);
+    try {
+        const products = await productService.getProducts();
+        res.render('admin/allProducts', { products });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 };
 
 // Define a function to get a specific product by ID
@@ -30,11 +34,11 @@ const updateProduct = async (req, res) => {
     /*if (!req.body.name) {
         res.status(400).json({ message: "Name is required" });
     }*/
-    const Product = await ProductService.updateProduct(req.params.id, req.body.name, req.body.price, req.body.category, req.body.color, req.body.gender, req.body.image);
+    const Product = await productService.updateProduct(req.params.id, req.body.name, req.body.price, req.body.category, req.body.color, req.body.gender, req.body.image);
     if (!Product) {
         return res.status(404).json({ errors: ['Product not found'] });
     }
-    res.json(Product);
+    res.redirect('/admin/products');
 };
 
 // Define a function to delete a Product
@@ -44,7 +48,7 @@ const deleteProduct = async (req, res) => {
     if (!product) {
         return res.status(404).json({ errors: ['Product not found'] });
     }
-    res.send();
+    res.redirect('/admin/products');
 };
 
 // Export all the defined controller functions

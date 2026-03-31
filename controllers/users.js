@@ -17,7 +17,7 @@ const getUserPage = (req, res) => {
 const getAllUsers = async (req, res) => {
     try {
         const users = await userService.getAllUsers();
-        res.render('admin/users', { users });
+        res.render('admin/allUsers', { users });
     } catch (error) {
         console.error('Error fetching users:', error);
         res.status(500).send('Error fetching users');
@@ -27,8 +27,14 @@ const getAllUsers = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const userId = req.params.id;
+
+        //prevent self deletion
+        if (req.session.userId === userId) {
+            return res.status(400).send("You can't delete yourself");
+        }
+
         await userService.deleteUser(userId);
-        res.redirect('/admin/users');
+        res.redirect('/admin/all');
     } catch (error) {
         console.error('Error deleting user:', error);
         res.status(500).send('Error deleting user');

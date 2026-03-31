@@ -16,6 +16,12 @@ async function requireAdmin(req, res, next) {
         return res.redirect('/login');
     }
 
+    //exposes admin to layout views just like user 
+    res.locals.user = {
+        username: admin.username,
+        role: 'admin'
+    };
+
     next();
 }
 

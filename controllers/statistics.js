@@ -1,11 +1,12 @@
-const Product = require('../models/products');
+// no need for model the data is derived, no storage needed
+const productService = require('../services/products');
 
 const getStatisticsPage = async (req, res) => {
-  const priceRangeCounts = await Product.getPriceRangeCounts();
-  res.render('statistics', { priceRangeCounts }, {
-        // dont show register button
-        showRegister: false 
-    })
+  const priceRangeCounts = await productService.getPriceRangeCounts();
+    res.render('statistics', { 
+        priceRangeCounts,
+        showRegister: false
+    });
 };
 
 module.exports = { getStatisticsPage };

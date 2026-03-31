@@ -1,0 +1,92 @@
+<div class="container mt-5">
+    <h1 class="mb-4">All Products</h1>
+
+    <% if (products.length === 0) { %>
+        <p>No products found.</p>
+    <% } else { %>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>category</th>
+                    <th>color</th>
+                    <th>gender</th>
+                    <th>image</th>
+                    <th>Actions</th> 
+                </tr>
+            </thead>
+
+            <tbody>
+                <% products.forEach(product => { %>
+                    <tr>
+                        <td><%= product.Name %></td>
+                        <td>$<%= product.Price %></td>
+                        <td><%= product.category %></td>
+                        <td><%= product.color %></td>
+                        <td><%= product.gender %></td>
+
+                        <td>
+                            <% if (product.image) { %>
+                                <img src="<%= product.image %>" width="60">
+                            <% } else { %>
+                                No Image
+                            <% } %>
+                        </td>
+
+                        <td>
+                            <!-- DELETE -->
+                            <form action="/admin/products/<%= product._id %>/delete" method="POST" style="display:inline;">
+                                <button class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure?')">
+                                    Delete
+                                </button>
+                            </form>
+
+                            <!-- EDIT -->
+                            <button class="btn btn-sm btn-warning"
+                                onclick="toggleEdit('<%= product._id %>')">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- EDIT ROW -->
+                    <tr id="edit-row-<%= product._id %>" style="display:none;">
+                        <td colspan="7">
+                            <form action="/admin/products/<%= product._id %>/update" method="POST">
+
+                                <input type="text" name="name" value="<%= product.name %>" required>
+                                <input type="number" name="price" value="<%= product.price %>" required>
+                                <input type="text" name="category" value="<%= product.category %>">
+                                <input type="text" name="color" value="<%= product.color %>">
+                                <input type="text" name="gender" value="<%= product.gender %>">
+                                <input type="text" name="image" value="<%= product.image %>">
+
+                                <button class="btn btn-success btn-sm">Save</button>
+                                <button type="button" class="btn btn-secondary btn-sm"
+                                    onclick="toggleEdit('<%= product._id %>')">
+                                    Cancel
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                <% }) %>
+            </tbody>
+        </table>
+
+    <% } %>
+</div>
+
+<script>
+function toggleEdit(id) {
+    const row = document.getElementById(`edit-row-${id}`);
+    if (row.style.display === "none") {
+        row.style.display = "table-row";
+    } else {
+        row.style.display = "none";
+    }
+}
+</script>

@@ -32,9 +32,9 @@ ProductSchema.statics.getPriceRangeCounts = async function() {
     return this.aggregate([
       {
         $bucket: {
-          groupBy: "$price",
-          boundaries: [0, 11, 21, 31],
-          default: "31+",
+          groupBy: "$Price",
+          boundaries: [0, 50, 100, 200],
+          default: "200+",
           output: {
             count: { $sum: 1 }
           }

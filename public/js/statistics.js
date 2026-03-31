@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  const labels = Object.keys(priceRangeCounts);
-  const data = Object.values(priceRangeCounts);
+  const labels = priceRangeCounts.map(r => r._id.toString());
+  const data = priceRangeCounts.map(r => r.count);
 
   const backgroundColors = labels.map(() =>
     `rgba(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, 0.2)`

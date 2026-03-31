@@ -77,9 +77,9 @@ const storeRoutes = require('./routes/store') // Referencing the 'store.js' rout
 const userRoutes = require('./routes/user');
 const cartRoutes = require('./routes/cart'); // Referencing the 'cart.js' routes file
 const Product = require('./models/products');
-const User = require('./models/user'); // Assuming you have a User model
-const checkoutRoutes = require('./routes/checkout'); // Referencing the 'checkout.js' routes file
-const statisticsRoutes = require('./routes/statistics'); // Referencing the 'statistics.js' routes file
+const User = require('./models/user'); 
+const checkoutRoutes = require('./routes/checkout'); 
+//const statisticsRoutes = require('./routes/statistics'); // statistics route managed by admin
 const logoutRoutes = require('./routes/logout');
 
 app.use('/store', storeRoutes); // Associating the store routes with the '/store' path
@@ -89,7 +89,7 @@ app.use('/registration', registrationRoutes); // Associating the registreation r
 app.use('/users', userRoutes); // Use the user routes
 app.use('/cart', cartRoutes); // Associating the store routes with the '/cart' path
 app.use('/checkout', checkoutRoutes); // Associating the store routes with the '/checkout' path
-app.use('/statistics', statisticsRoutes); // Associating the store routes with the '/statistics' path
+//app.use('/statistics', statisticsRoutes); // statistics route managed by admin
 app.use('/logout', logoutRoutes);
 
 app.get('/registration', (req, res) => {

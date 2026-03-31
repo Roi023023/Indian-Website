@@ -2,12 +2,17 @@ const supplierSerivce = require('../services/suppliers');
 
 const createSupplier = async (req, res) => {
     const newSupplier = await supplierSerivce.createSupplier(req.body.name, req.body.location, req.body.phone_number, req.body.Collaboration_Date);
-    res.json(newSupplier);
+    res.redirect('/admin/');
 };
 
 const getSuppliers = async (req, res) => {
-    const suppliers = await supplierSerivce.getSuppliers();
-    res.json(suppliers);
+    try {
+        const suppliers = await supplierSerivce.getSuppliers();
+        res.render('admin/allSuppliers', { suppliers });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 };
 
 const getSupplier = async (req, res) => {
@@ -15,7 +20,7 @@ const getSupplier = async (req, res) => {
     if (!supplier) {
         return res.status(404).json({ errors: ['Supplier not found'] });
     }
-    res.json(supplier);
+    res.redirect('/admin/suppliers');
 };
 
 const updateSupplier = async (req, res) => {  
@@ -23,7 +28,7 @@ const updateSupplier = async (req, res) => {
     if (!supplier) {
       return res.status(404).json({ errors: ['Supplier not found'] });
     }
-    res.json(supplier);
+    res.redirect('/admin/suppliers');
   };
 
   const deleteSupplier = async (req, res) => {
@@ -32,7 +37,7 @@ const updateSupplier = async (req, res) => {
       return res.status(404).json({ errors: ['Supplier not found'] });
     }
   
-    res.send();
+    res.redirect('/admin/suppliers');
   };
 
   module.exports = {

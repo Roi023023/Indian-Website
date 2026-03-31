@@ -1,12 +1,12 @@
 <!-- views/statistics.ejs -->
-<body>
+
     <!-- Read in js -->
     <div id="chartContainer" data-ranges='<%- JSON.stringify(priceRangeCounts || []) %>'>
         <canvas id="barChart"></canvas>
     </div>
   
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <!--  
     <script>
         let labels = priceRangeCounts.map(range => `${range._id}`);
         let data = priceRangeCounts.map(range => range.count);
@@ -41,6 +41,8 @@
             }
         });
     </script>
+    -->
+    
   
     <script src="/js/statistics.js"></script>
-</body>
+
