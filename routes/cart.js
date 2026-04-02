@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.use(requestAuth);
 
+const { cMiddleware } = require("../middlewares/validateCheckout");
+
 router.get("/", cartController.getCartPage);
 
 router.post("/add/:productId", cartController.addToCart);

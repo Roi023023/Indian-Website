@@ -40,6 +40,7 @@ const attachUser = require('./middlewares/authMiddleware');
 app.use(attachUser);
 ////
 
+
 mongoose.set('strictQuery', false);
 
 //security risk line removed - will add .env file instead of mongoose.conect
@@ -87,8 +88,8 @@ app.use('/admin', adminRoutes); // Associating the admin routes with the '/admin
 app.use('/login', loginRoutes); // Associating the login routes with the '/login' path
 app.use('/registration', registrationRoutes); // Associating the registreation routes with the '/registreation' path
 app.use('/users', userRoutes); // Use the user routes
-app.use('/cart', cartRoutes); // Associating the store routes with the '/cart' path
-app.use('/checkout', checkoutRoutes); // Associating the store routes with the '/checkout' path
+app.use('/cart', cartRoutes); // Associating the cart routes with the '/cart' path
+app.use('/checkout', checkoutRoutes); // Associating the checkout routes with the '/checkout' path
 //app.use('/statistics', statisticsRoutes); // statistics route managed by admin
 app.use('/logout', logoutRoutes);
 
