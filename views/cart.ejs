@@ -28,6 +28,7 @@
                       </div>
       
                     <% cart.items.forEach(item => { %>
+                      <pre><%= JSON.stringify(item, null, 2) %></pre>
 
                     <div class="card mb-3 cart-item">
                       <div class="card-body">

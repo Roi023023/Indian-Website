@@ -46,7 +46,8 @@ const addToCart = async (req, res) => {
 
         const product = {
             productId: req.params.productId,
-            name: dbProduct.name,
+            name: dbProduct.Name,
+            image: dbProduct.image,
             price: dbProduct.Price,
             quantity: Number(req.body.quantity || 1)
         };

@@ -6,15 +6,33 @@ const cartItemSchema = new mongoose.Schema({
         required: true,
         ref: "Product"
     },
+
+    name: {                  
+        type: String,
+        required: true
+    },
+
+    image: {                 
+        type: String,
+        required: true
+    },
+
+    description: {           
+        type: String,
+        default: ""
+    },
+
     quantity: {
         type: Number,
         default: 1
     },
+
     price: {
         type: Number,
         required: true
     }
-}, { timestamps: true }); //MongoDB automatically stores: createdAt updatedAt
+
+}, { timestamps: true });
 
 const cartSchema = new mongoose.Schema({
     userId: {
