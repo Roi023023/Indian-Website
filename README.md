@@ -17,30 +17,6 @@ including authentication, cart management, admin dashboards, and persistent data
 As well as to train me on using AI as a tool with proper understanding of the building process,
 and to possibly enable more complex developments to the website (whether in full stack or other fields). 
 
-## Screenshots
-
-### Home Page
-![Home](./screenshots/Homepage.png)
-
-### Login Page
-![Login](./screenshots/Login.png)
-
-### Store Page
-![Store](./screenshots/store.png)
-![Store2](./screenshots/store2.png)
-
-### Cart Page
-![Cart](./screenshots/Cart.png)
-
-### Admin Dashboard
-![Admin](./screenshots/Admin_Panel.png)
-
-### Manage Products Table
-![Manage_Products](./screenshots/Manage_Products.png)
-
-### Add Supplier form
-![Add_Supplier](./screenshots/New_supplier.png)
-
 ## Simple access instructions - No additional setup is required.
 - For the sake of convenience I made a dedicated demo database for your use
   (a .env file is included in the project with read/write permissions only)
